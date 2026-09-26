@@ -15,22 +15,19 @@
 </head>
 <body class="bg-dark-heavy text-gray-100 antialiased selection:bg-red-600 selection:text-white">
 
-    <!-- ส่วนที่ 1: Hero Banner (เปิดตัวด้วยความดุดัน เต็มตา ไม่มีเมนูกวนใจ) -->
+    <!-- ส่วนที่ 1: Hero Banner -->
     <section id="hero" class="relative min-h-screen flex items-center justify-end px-4 sm:px-8 lg:px-16 overflow-hidden">
-        <!-- พื้นหลังดุดัน โทนหม่น -->
+        <!-- พื้นหลังดุดัน โทนหม่น (ใช้ลิงก์รูป Hero Banner ใหม่) -->
         <div class="absolute inset-0 z-0">
-            <img src="watermarked_img_17566656378268163031.jpg" alt="Gym Background" class="w-full h-full object-cover opacity-40 scale-105">
+            <img src="https://lh3.googleusercontent.com/d/1MEAT1SN75nbwsleMDfa8xJHZlkTAfJnx" alt="Max Fitness Hero Banner" class="w-full h-full object-cover opacity-50 scale-105">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
         
-        <!-- โลโก้มุมซ้ายบน (วางแบบนิ่งๆ ไม่ใช่ลิงก์เมนู) -->
+        <!-- โลโก้มุมซ้ายบน (เปลี่ยนเป็นรูปโลโก้ตามลิงก์ที่ส่งมา) -->
         <div class="absolute top-8 left-8 sm:left-16 z-20">
-            <div class="flex font-black text-2xl tracking-tighter">
-                <span class="text-cyan-400">M</span>
-                <span class="text-cyan-400">A</span>
-                <span class="text-yellow-400">X</span>
-                <span class="text-white ml-2">FITNESS</span>
-            </div>
+            <a href="#hero">
+                <img src="https://lh3.googleusercontent.com/d/1JMydjCK-0K811kVuBNRfrbuxCZN3tsWh" alt="Max Fitness Logo" class="h-10 sm:h-12 w-auto object-contain">
+            </a>
         </div>
 
         <!-- คำโปรยมุมขวา -->
@@ -42,11 +39,15 @@
                 PUSH YOUR <span class="text-cyan-400">LIMITS</span> <br>
                 BUILD YOUR <span class="text-red-600">MAX</span>
             </h1>
-            <p class="text-gray-400 text-lg sm:text-xl font-300 mb-8">
-                ยิมที่ออกแบบมาเพื่อคนจริงจังกับการเปลี่ยนแปลงร่างกาย เครื่องมือครบครันระดับโปร บรรยากาศเร้าใจ ปลุกพลังความดุดันในตัวคุณ
+            <!-- ปรับแก้ข้อความภาษาไทยตามที่คุณสั่ง -->
+            <p class="text-gray-300 text-base sm:text-lg font-300 mb-8 leading-relaxed">
+                ยิมที่ออกแบบมาเพื่อคนจริงจังกับการเปลี่ยนแปลงร่างกาย<br>
+                เครื่องมือครบครันระดับโปร<br>
+                บรรยากาศเร้าใจ ปลุกพลังความดุดันในตัวคุณ
             </p>
             <div class="flex justify-end gap-4">
-                <a href="#about" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded uppercase tracking-wider transition shadow-lg shadow-cyan-500/20">
+                <!-- ปรับปุ่มเลื่อนลงให้ไม่ตัวหนาและเล็กลง -->
+                <a href="#about" class="text-gray-400 hover:text-cyan-400 text-xs tracking-wider transition">
                     เลื่อนลงเพื่ออ่านต่อ ↓
                 </a>
             </div>
