@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAX FITNESS - ปลุกพลังในตัวคุณ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; }
+        .bg-dark-heavy { background-color: #0b0b0b; }
+        .bg-dark-card { background-color: #141414; }
+    </style>
+</head>
+<body class="bg-dark-heavy text-gray-100 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- ส่วนที่ 1: Hero Banner (เปิดตัวด้วยความดุดัน เต็มตา ไม่มีเมนูกวนใจ) -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-end px-4 sm:px-8 lg:px-16 overflow-hidden">
+        <!-- พื้นหลังดุดัน โทนหม่น -->
+        <div class="absolute inset-0 z-0">
+            <img src="watermarked_img_17566656378268163031.jpg" alt="Gym Background" class="w-full h-full object-cover opacity-40 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+        </div>
+        
+        <!-- โลโก้มุมซ้ายบน (วางแบบนิ่งๆ ไม่ใช่ลิงก์เมนู) -->
+        <div class="absolute top-8 left-8 sm:left-16 z-20">
+            <div class="flex font-black text-2xl tracking-tighter">
+                <span class="text-cyan-400">M</span>
+                <span class="text-cyan-400">A</span>
+                <span class="text-yellow-400">X</span>
+                <span class="text-white ml-2">FITNESS</span>
+            </div>
+        </div>
+
+        <!-- คำโปรยมุมขวา -->
+        <div class="relative z-10 max-w-xl text-right my-auto py-20">
+            <div class="inline-block bg-yellow-400 text-black font-extrabold px-3 py-1 text-xs uppercase tracking-widest mb-4">
+                NO EXCUSES, JUST RESULTS
+            </div>
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight uppercase leading-none mb-6">
+                PUSH YOUR <span class="text-cyan-400">LIMITS</span> <br>
+                BUILD YOUR <span class="text-red-600">MAX</span>
+            </h1>
+            <p class="text-gray-400 text-lg sm:text-xl font-300 mb-8">
+                ยิมที่ออกแบบมาเพื่อคนจริงจังกับการเปลี่ยนแปลงร่างกาย เครื่องมือครบครันระดับโปร บรรยากาศเร้าใจ ปลุกพลังความดุดันในตัวคุณ
+            </p>
+            <div class="flex justify-end gap-4">
+                <a href="#about" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded uppercase tracking-wider transition shadow-lg shadow-cyan-500/20">
+                    เลื่อนลงเพื่ออ่านต่อ ↓
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 2: About Us -->
+    <section id="about" class="min-h-screen flex items-center py-24 bg-dark-card border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-yellow-400 font-bold uppercase tracking-widest text-sm">ส่วนที่ 2 / ABOUT US</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold uppercase mt-2 mb-6">
+                        สถานที่ปลุกปั้น <span class="text-red-600">ความแข็งแกร่ง</span> ที่เหนือกว่า
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        MAX FITNESS ไม่ใช่แค่ฟิตเนสธรรมดา แต่เป็นคอมมูนิตี้ของคนที่มีเป้าหมายชัดเจน เราจัดเตรียมอุปกรณ์นำเข้าเกรดพรีเมียม พื้นที่กว้างขวางแบ่งสัดส่วนชัดเจน ทั้งโซนเวทเทรนนิ่ง คาร์ดิโอ และฟังก์ชั่นนอลเทรนนิ่ง ภายใต้บรรยากาศดุดันกระตุ้นการออกกำลังกายขั้นสุด
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 border-t border-gray-800 pt-6">
+                        <div>
+                            <h3 class="text-3xl font-black text-cyan-400">1,000+</h3>
+                            <p class="text-sm text-gray-400">สมาชิกผู้พิชิตเป้าหมาย</p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-yellow-400">24/7</h3>
+                            <p class="text-sm text-gray-400">ความพร้อมเครื่องเล่นโปร</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-red-600 rounded-lg blur opacity-30"></div>
+                    <div class="relative bg-black p-4 rounded-lg border border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Gym Equipment" class="w-full h-80 object-cover rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 3: ภาพกิจกรรมในฟิตเนส -->
+    <section id="activities" class="min-h-screen flex items-center py-24 bg-dark-heavy">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-cyan-400 font-bold uppercase tracking-widest text-sm">ส่วนที่ 3 / ACTIVITIES</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold uppercase mt-2">บรรยากาศและกิจกรรมภายในยิม</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- การ์ดที่ 1 -->
+                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Weight Training" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-yellow-400 font-bold uppercase">STRENGTH</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Heavy Weight Training</h3>
+                        <p class="text-gray-400 text-sm">โซนเหล็กหนัก อุปกรณ์มาตรฐานสากล ดัมบ์เบลครบน้ำหนักสำหรับสายเพาะกาย</p>
+                    </div>
+                </div>
+                <!-- การ์ดที่ 2 -->
+                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=600&q=80" alt="Functional" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-cyan-400 font-bold uppercase">FUNCTIONAL</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">CrossFit & Cardio</h3>
+                        <p class="text-gray-400 text-sm">เบิร์นไขมันกระจายด้วยโซนคาร์ดิโอสมรรถนะสูงและพื้นที่ฝึกความคล่องตัว</p>
+                    </div>
+                </div>
+                <!-- การ์ดที่ 3 -->
+                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80" alt="Personal Trainer" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-red-500 font-bold uppercase">PROFESSIONAL</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2">Expert Personal Trainer</h3>
+                        <p class="text-gray-400 text-sm">เทรนเนอร์มืออาชีพดูแลใกล้ชิด ออกแบบโปรแกรมเฉพาะบุคคลเพื่อผลลัพธ์ที่ไวขึ้น</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 4: Call to action + ช่องทางติดต่อ -->
+    <section id="contact" class="min-h-screen flex items-center py-24 bg-dark-card border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 sm:p-12 border border-gray-800 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-red-600 font-bold uppercase tracking-widest text-sm">ส่วนที่ 4 / JOIN US NOW</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold uppercase mt-2 mb-4">พร้อมเปลี่ยนตัวเองหรือยัง?</h2>
+                    <p class="text-gray-400 mb-6">
+                        ติดต่อสอบถามโปรโมชั่นสมัครสมาชิกรายเดือน/รายปี หรือเข้ามาเยี่ยมชมสถานที่จริงได้ทันทีตามช่องทางด้านล่างนี้
+                    </p>
+                    <div class="space-y-4 text-gray-300">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-cyan-400 font-bold">📍 พิกัด:</span>
+                            <span>ใจกลางเมือง (เปิดให้บริการทุกวัน)</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-yellow-400 font-bold">📞 โทรศัพท์:</span>
+                            <span>08X-XXX-XXXX</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-red-500 font-bold">💬 Line Official:</span>
+                            <span>@maxfitness</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ฟอร์มติดต่อ -->
+                <div class="bg-black p-6 sm:p-8 rounded-xl border border-gray-800">
+                    <h3 class="text-xl font-bold mb-4 uppercase">ส่งข้อความหาเรา</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('ส่งข้อมูลสำเร็จ! ทางเราจะติดต่อกลับโดยเร็วที่สุด');">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">ชื่อ - นามสกุล</label>
+                            <input type="text" required class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">เบอร์โทรศัพท์</label>
+                            <input type="tel" required class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">ข้อความ / สนใจแพ็กเกจใด</label>
+                            <textarea rows="3" class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded uppercase tracking-wider transition shadow-lg shadow-red-600/30">
+                            ส่งข้อมูลสมัครสมาชิก
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900 text-center text-gray-600 text-sm">
+        <p>&copy; 2026 MAX FITNESS. All Rights Reserved. โครงสร้างเว็บหน้าเดียว Zero Cost 100%</p>
+    </footer>
+
+</body>
+</html>
