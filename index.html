@@ -17,37 +17,35 @@
 
     <!-- ส่วนที่ 1: Hero Banner -->
     <section id="hero" class="relative min-h-screen flex items-center justify-end px-4 sm:px-8 lg:px-16 overflow-hidden">
-        <!-- พื้นหลังดุดัน โทนหม่น (ใช้ลิงก์รูป Hero Banner ใหม่) -->
+        <!-- พื้นหลังปรับความสว่างขึ้น (ลดความมืดลงเหลือ opacity-75 เพื่อให้เห็นรูปชัดขึ้น) -->
         <div class="absolute inset-0 z-0">
-            <img src="https://lh3.googleusercontent.com/d/1MEAT1SN75nbwsleMDfa8xJHZlkTAfJnx" alt="Max Fitness Hero Banner" class="w-full h-full object-cover opacity-50 scale-100">
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+            <img src="https://lh3.googleusercontent.com/d/1MEAT1SN75nbwsleMDfa8xJHZlkTAfJnx" alt="Max Fitness Hero Banner" class="w-full h-full object-cover opacity-100 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
         </div>
         
-        <!-- โลโก้มุมซ้ายบน (เปลี่ยนเป็นรูปโลโก้ตามลิงก์ที่ส่งมา) -->
+        <!-- โลโก้มุมซ้ายบน (ขยายใหญ่ขึ้นอีก 2 เท่าจากเดิม) -->
         <div class="absolute top-8 left-8 sm:left-16 z-20">
             <a href="#hero">
-                <img src="https://lh3.googleusercontent.com/d/1JMydjCK-0K811kVuBNRfrbuxCZN3tsWh" alt="Max Fitness Logo" class="h-12 sm:h-14 w-auto object-contain">
+                <img src="https://lh3.googleusercontent.com/d/1JMydjCK-0K811kVuBNRfrbuxCZN3tsWh" alt="Max Fitness Logo" class="h-32 sm:h-40 w-auto object-contain">
             </a>
         </div>
 
         <!-- คำโปรยมุมขวา -->
         <div class="relative z-10 max-w-xl text-right my-auto py-20">
-            <div class="inline-block bg-yellow-400 text-black font-extrabold px-3 py-1 text-xs uppercase tracking-widest mb-4">
+            <div class="inline-block bg-yellow-400 text-black font-extrabold px-3 py-1 text-xs uppercase tracking-widest mb-4 shadow-md">
                 NO EXCUSES, JUST RESULTS
             </div>
-            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight uppercase leading-none mb-6">
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight uppercase leading-none mb-6 drop-shadow-lg">
                 PUSH YOUR <span class="text-cyan-400">LIMITS</span> <br>
                 BUILD YOUR <span class="text-red-600">MAX</span>
             </h1>
-            <!-- ปรับแก้ข้อความภาษาไทยตามที่คุณสั่ง -->
-            <p class="text-gray-300 text-base sm:text-lg font-300 mb-8 leading-relaxed">
+            <p class="text-gray-200 text-base sm:text-lg font-300 mb-8 leading-relaxed drop-shadow">
                 ยิมที่ออกแบบมาเพื่อคนจริงจังกับการเปลี่ยนแปลงร่างกาย<br>
                 เครื่องมือครบครันระดับโปร<br>
                 บรรยากาศเร้าใจ ปลุกพลังความดุดันในตัวคุณ
             </p>
             <div class="flex justify-end gap-4">
-                <!-- ปรับปุ่มเลื่อนลงให้ไม่ตัวหนาและเล็กลง -->
-                <a href="#about" class="text-gray-400 hover:text-cyan-400 text-xs tracking-wider transition">
+                <a href="#about" class="text-gray-300 hover:text-cyan-400 text-xs tracking-wider transition">
                     เลื่อนลงเพื่ออ่านต่อ ↓
                 </a>
             </div>
