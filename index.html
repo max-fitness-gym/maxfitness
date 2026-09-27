@@ -163,6 +163,12 @@
             font-weight: 600;
             letter-spacing: -0.01em;
             font-size: 0.875rem;
+            overflow: hidden;
+        }
+        .nav-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .nav-name {
             font-size: 0.8125rem;
@@ -404,6 +410,12 @@
         @media (min-width: 1024px) {
             .hero-portrait-wrapper { width: 36vw; }
         }
+        .hero-portrait-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+        }
         .hero-portrait-wrapper .liquid-media {
             pointer-events: auto;
             width: 100%;
@@ -598,15 +610,16 @@
         }
         .ventures-heading {
             margin-top: 1.5rem;
-            max-width: 14ch;
+            max-width: 24ch;
             font-family: var(--font-display);
             text-transform: uppercase;
-            line-height: 0.95;
+            line-height: 1.05;
             letter-spacing: -0.01em;
-            font-size: 3.25rem;
+            font-size: 2.75rem;
+            word-break: keep-all;
         }
         @media (min-width: 640px) {
-            .ventures-heading { font-size: 5rem; }
+            .ventures-heading { font-size: 4.25rem; }
         }
         .ventures-grid {
             margin-top: 4rem;
@@ -620,7 +633,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .venture-card:nth-child(even) {
-                margin-top: 6rem;
+                margin-top: 0rem;
             }
         }
         .venture-card article {
@@ -1067,7 +1080,9 @@
     <header>
         <nav aria-label="Main Navigation">
             <a href="#top" class="nav-logo">
-                <div class="nav-badge">MAX</div>
+                <div class="nav-badge">
+                    <img src="https://lh3.googleusercontent.com/d/1j3rPiiQ7V5yYU3ey8g8gLPcU6XyMUaxG" alt="MAX Logo">
+                </div>
                 <span class="nav-name">MAXFITNESS</span>
             </a>
             <ul class="nav-links">
@@ -1116,12 +1131,13 @@
                 </p>
             </div>
 
-            <!-- Hero Portrait (Bare liquid image with video) -->
+            <!-- Hero Portrait (Real Image with Liquid Filter Support) -->
             <div class="hero-portrait-wrapper">
                 <div class="liquid-media-container liquid-interactive" data-scale="30" style="background: transparent;">
-                    <video autoplay muted loop playsinline preload="auto" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23111114'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='20'%3EMarcus Vane%3C/text%3E%3C/svg%3E" style="filter: url(#liquidFilter);">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-a-man-standing-against-a-sunset-41617-large.mp4" type="video/mp4">
-                    </video>
+                    <img src="https://lh3.googleusercontent.com/d/1D7Ad8OcOvxxPh_EuJTnX7XJwx--4WL0p" alt="Hero Portrait" style="filter: url(#liquidFilter);" />
+                    <div class="liquid-overlay-veil" style="opacity: 0.15;"></div>
+                    <div class="liquid-glow-sweep"></div>
+                    <div class="liquid-vignette"></div>
                 </div>
             </div>
 
@@ -1176,12 +1192,12 @@
                         <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
                     </h2>
                     <p class="story-lead">
-                        เรามีเป้าหมายเดียวกันกับคุณ — สุขภาพที่ดีขึ้น เพื่อให้คุณพร้อม
-                        <br>ในทุกบทบาทของชีวิต ไม่ว่าจะเป็นงาน ครอบครัว 
-                        <br>หรือความท้าทายในอนาคต 
-                        <br>ที่นี่คือพื้นที่ที่คุณจะได้พัฒนาตัวเองอย่างต่อเนื่อง 
-                         <br>ไม่มีคำว่า “พรุ่งนี้ค่อยเริ่ม” 
-                        <br>เพราะการลงทุนกับสุขภาพ วันนี้ คือจุดเริ่มต้นของสิ่งที่ดีกว่า
+                        เพื่อให้ร่างกายคุณพร้อมรับมือในทุกสถานการณ์
+                        <br>จึงเริ่มต้นที่สร้างสถานที่ให้คุณสามารถ
+                        <br>ท้าทายร่างกายของคุณ เพิ่มขีดจำกัด
+                        <br>และยกระดับความมั่นใจในรูปร่าง
+                        <br>ด้วยอุปกรณ์ระดับพรีเมี่ยม
+                        <br>และเทรนเนอรร์มากประสบการณ์
                     </p>
                 </div>
                 <div class="story-right">
@@ -1229,12 +1245,11 @@
                         <span>PROMOTION</span>
                     </div>
                     <h2 class="ventures-heading">
-                        <span class="reveal-line-wrap"><span class="reveal-line">The package that</span></span>
-                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">changes your life</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
                     </h2>
                 </div>
                 <div class="fade-slide-up" style="transition-delay: 100ms;">
-                    <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">04 / Companies</span>
+                    <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">02 / Packages</span>
                 </div>
             </div>
 
@@ -1282,52 +1297,6 @@
                             </div>
                         </div>
                         <div class="venture-category">Climate Infrastructure</div>
-                    </article>
-                </li>
-
-                <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
-                    <article>
-                        <div class="liquid-media-container liquid-interactive" data-scale="28">
-                            <div class="liquid-placeholder">Cadence Health</div>
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3ECadence Health%3C/text%3E%3C/svg%3E" alt="Cadence Health" style="filter: url(#liquidFilter);" />
-                            <div class="liquid-overlay-veil"></div>
-                            <div class="liquid-glow-sweep"></div>
-                            <div class="liquid-vignette"></div>
-                        </div>
-                        <div class="venture-meta-row">
-                            <div>
-                                <h3 class="venture-title">Cadence Health</h3>
-                                <p class="venture-desc">Put a clinician in every pocket and rewired how chronic care gets delivered.</p>
-                            </div>
-                            <div class="venture-info-right">
-                                <div class="venture-year">2011</div>
-                                <div class="venture-outcome">Acquired — $640M</div>
-                            </div>
-                        </div>
-                        <div class="venture-category">Digital Medicine</div>
-                    </article>
-                </li>
-
-                <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
-                    <article>
-                        <div class="liquid-media-container liquid-interactive" data-scale="28">
-                            <div class="liquid-placeholder">Vane Capital</div>
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3EVane Capital%3C/text%3E%3C/svg%3E" alt="Vane Capital" style="filter: url(#liquidFilter);" />
-                            <div class="liquid-overlay-veil"></div>
-                            <div class="liquid-glow-sweep"></div>
-                            <div class="liquid-vignette"></div>
-                        </div>
-                        <div class="venture-meta-row">
-                            <div>
-                                <h3 class="venture-title">Vane Capital</h3>
-                                <p class="venture-desc">Backing the next generation of contrarian founders building hard, durable companies.</p>
-                            </div>
-                            <div class="venture-info-right">
-                                <div class="venture-year">2008</div>
-                                <div class="venture-outcome">Active — $900M AUM</div>
-                            </div>
-                        </div>
-                        <div class="venture-category">Venture Investing</div>
                     </article>
                 </li>
             </ul>
