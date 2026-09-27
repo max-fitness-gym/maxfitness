@@ -399,27 +399,23 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 86vh;
-            width: 80vw;
+            height: 85vh; /* ขนาดมือถือ */
+            width: 100vw;
             z-index: 20;
             pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* จัดให้รูปชนขอบล่าง */
         }
         @media (min-width: 640px) {
-            .hero-portrait-wrapper { width: 48vw; }
+            .hero-portrait-wrapper { height: 95vh; } /* ขนาดใหญ่ขึ้นบนคอมพิวเตอร์ */
         }
-        @media (min-width: 1024px) {
-            .hero-portrait-wrapper { width: 36vw; }
-        }
+        
         .hero-portrait-wrapper img {
-            width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center bottom;
-        }
-        .hero-portrait-wrapper .liquid-media {
-            pointer-events: auto;
-            width: 100%;
-            height: 100%;
+            width: auto;
+            object-fit: contain;
+            object-position: bottom center;
         }
 
         .hero-gradient-base {
@@ -432,7 +428,7 @@
             pointer-events: none;
         }
 
-        /* ปรับแต่งข้อความ MAX FITNESS ให้เป็นแนวนอนและอยู่ตรงกลางฉากหลัง */
+        /* ปรับแต่งข้อความ MAX FITNESS เป็นแนวตั้ง 2 บรรทัด */
         .hero-giant-name {
             position: absolute;
             inset-inline: 0;
@@ -440,19 +436,21 @@
             transform: translateY(-50%);
             z-index: 10;
             display: flex;
+            flex-direction: column; /* เปลี่ยนเป็นเรียงบน-ล่าง */
             justify-content: center;
             align-items: center;
             font-family: var(--font-display);
             text-transform: uppercase;
-            line-height: 1;
+            line-height: 0.85; /* ปรับความห่างระหว่างบรรทัด */
             letter-spacing: -0.02em;
             color: var(--accent);
-            font-size: 14vw;
+            font-size: 16vw; /* ปรับขนาดเป็น 16vw */
             pointer-events: none;
             user-select: none;
             width: 100%;
             text-align: center;
             white-space: nowrap;
+            margin: 0;
         }
         .hero-giant-name span {
             display: inline-block;
@@ -1132,21 +1130,17 @@
                 </p>
             </div>
 
-            <!-- Hero Portrait (Real Image with Liquid Filter Support) -->
+            <!-- Hero Portrait (แก้ไขเป็นรูป PNG เปล่า ไม่มีพื้นหลัง และชนขอบล่าง) -->
             <div class="hero-portrait-wrapper">
-                <div class="liquid-media-container liquid-interactive" data-scale="30" style="background: transparent;">
-                    <img src="https://lh3.googleusercontent.com/d/1D7Ad8OcOvxxPh_EuJTnX7XJwx--4WL0p" alt="Hero Portrait" style="filter: url(#liquidFilter);" />
-                    <div class="liquid-overlay-veil" style="opacity: 0.15;"></div>
-                    <div class="liquid-glow-sweep"></div>
-                    <div class="liquid-vignette"></div>
-                </div>
+                <img src="https://lh3.googleusercontent.com/d/1D7Ad8OcOvxxPh_EuJTnX7XJwx--4WL0p" alt="Hero Portrait" />
             </div>
 
             <div class="hero-gradient-base"></div>
 
-            <!-- Giant Name H1 (ปรับเป็นแนวนอนพาดขวางตรงกลาง) -->
+            <!-- Giant Name H1 (ปรับเป็น 2 บรรทัด ขนาด 16vw และซ้อนหลังคน) -->
             <h1 class="hero-giant-name" aria-label="MAX FITNESS">
-                <span class="hero-name-line" data-delay="2500" data-stagger="40">MAX FITNESS</span>
+                <span class="hero-name-line" data-delay="2500" data-stagger="40">MAX</span>
+                <span class="hero-name-line" data-delay="2650" data-stagger="40">FITNESS</span>
             </h1>
 
             <div class="hero-scroll-cue fade-slide-up" data-delay="3400">
@@ -1188,12 +1182,13 @@
                         <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
                     </h2>
                     <p class="story-lead">
-                        เรามีเป้าหมายเดียวกันกับคุณ — สุขภาพที่ดีขึ้น เพื่อให้คุณพร้อม
-                        <br>ในทุกบทบาทของชีวิต ไม่ว่าจะเป็นงาน ครอบครัว 
-                        <br>หรือความท้าทายในอนาคต 
-                        <br>ที่นี่คือพื้นที่ที่คุณจะได้พัฒนาตัวเองอย่างต่อเนื่อง 
-                        <br>ไม่มีคำว่า “พรุ่งนี้ค่อยเริ่ม” 
-                        <br>เพราะการลงทุนกับสุขภาพ วันนี้ คือจุดเริ่มต้นของสิ่งที่ดีกว่า
+                        เพื่อให้คุณพร้อมรับมือกับทุกสถานการณ์
+                        <br>เราจึงออกแบบสถานที่สำหรับ
+                        <br>ให้คุณได้ท้าทายขีดจำกัด
+                        <br>ยกระดับความมั่นใจ
+                        <br>ด้วยอุปกรณ์ระดับพรีเมี่ยม
+                        <br>และเทรนเนอร์มากประสบการณ์
+                        <br>ให้คุณมาได้ลองฟิตร่างกายได้ทุกวัน
                     </p>
                 </div>
                 <div class="story-right">
@@ -1241,7 +1236,7 @@
                         <span>PROMOTION</span>
                     </div>
                     <h2 class="ventures-heading">
-                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT <br>CHANGES YOUR LIFE</span></span>
                     </h2>
                 </div>
                 <div class="fade-slide-up" style="transition-delay: 100ms;">
