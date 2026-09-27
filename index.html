@@ -1,245 +1,1781 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAX FITNESS - ปลุกพลังในตัวคุณ</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Kanit', sans-serif; }
-        .bg-dark-heavy { background-color: #0b0b0b; }
-        .bg-dark-card { background-color: #141414; }
+    <title>Marcus Vane — Founder · Investor · Operator</title>
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 
-        /* ลูกเล่นอนิเมชัน Hero Banner แบบโมเดิร์น */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+    <!-- Lenis smooth scroll importmap -->
+    <script type="importmap">
+    { "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.mjs" } }
+    </script>
+
+    <style>
+        /* CSS Reset & Variables */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+
+        img, video {
+            display: block;
+            max-width: 100%;
         }
-        .animate-fade-in {
-            animation: fadeInUp 1s ease-out forwards;
+
+        ul, ol {
+            list-style: none;
         }
-        .animate-zoom {
-            animation: slowZoom 15s ease-out infinite alternate;
+
+        button, a {
+            font: inherit;
+            color: inherit;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        :root {
+            --background: #08080a;
+            --foreground: #f3f1ea;
+            --surface: #111114;
+            --surface-2: #17171b;
+            --muted: #807f78;
+            --line: rgba(243,241,234,0.1);
+            --line-strong: rgba(243,241,234,0.22);
+            --accent: #ff3b1d;
+            --accent-2: #ff6a3d;
+            --gutter: 2.5rem;
+            --section: 9rem;
+            --font-display: "Anton", sans-serif;
+            --font-sans: "Onest", sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            background: var(--background);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+        @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+        @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+        @media (max-width: 640px) {
+            html { font-size: 4.444444vw; }
+            :root { --gutter: 16px; }
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--background);
+        }
+
+        /* Typography utility styles */
+        .font-display { font-family: var(--font-display); }
+        .font-sans { font-family: var(--font-sans); }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--gutter);
+            pointer-events: auto;
+            transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @media (min-width: 640px) {
+            #preloader {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
+        .preloader-brand {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: var(--foreground);
+            transition: opacity 300ms ease;
+        }
+        .preloader-counter {
+            font-family: var(--font-display);
+            font-size: 7.5rem;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            color: var(--foreground);
+            transition: opacity 300ms ease;
+        }
+        .preloader-counter span {
+            color: var(--accent);
+        }
+
+        /* Header / Nav */
+        header {
+            position: fixed;
+            inset-inline: 0;
+            top: 0;
+            z-index: 50;
+            pointer-events: none;
+        }
+        header nav {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem var(--gutter);
+            background: linear-gradient(to bottom, rgba(8,8,10,0.85) 0%, rgba(8,8,10,0) 100%);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-badge {
+            display: grid;
+            place-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            border: 1px solid var(--line-strong);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            font-size: 0.875rem;
+        }
+        .nav-name {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+        }
+        @media (max-width: 639px) {
+            .nav-name { display: none; }
+        }
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+        }
+        .nav-link {
+            position: relative;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--foreground);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -0.25rem;
+            left: 0;
+            height: 1px;
+            background: var(--accent);
+            width: 0;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Burger Menu (<md) */
+        .burger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.375rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 60;
+        }
+        @media (min-width: 768px) {
+            .burger-btn { display: none; }
+        }
+        .burger-bar {
+            height: 0.125rem;
+            width: 1.5rem;
+            background: var(--foreground);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+        .burger-btn.open .bar-1 { transform: translateY(0.5rem) rotate(45deg); }
+        .burger-btn.open .bar-2 { opacity: 0; }
+        .burger-btn.open .bar-3 { transform: translateY(-0.5rem) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 55;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-inline: var(--gutter);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 3.25rem;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: var(--muted);
+            transition: color 0.2s ease, transform 0.3s ease;
+            display: inline-block;
+            transform: translateY(48px);
+            opacity: 0;
+            transition: transform 420ms cubic-bezier(0.16,1,0.3,1), opacity 420ms ease, color 0.2s ease;
+        }
+        .mobile-menu.open a {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .mobile-menu a:hover {
+            color: var(--foreground);
+        }
+
+        /* Main layout */
+        main {
+            position: relative;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Eyebrow component */
+        .eyebrow-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+        }
+        .eyebrow-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 9999px;
+            background: var(--accent);
+        }
+
+        /* Text reveal helper classes */
+        .reveal-line-wrap {
+            overflow: hidden;
+            display: block;
+        }
+        .reveal-line {
+            display: block;
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms ease;
+        }
+        .reveal-line.revealed {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .reveal-letter {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 900ms ease;
+        }
+        .reveal-letter.revealed {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Scroll fade-up items */
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-slide-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        #top {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100svh;
+            overflow: hidden;
+        }
+        .hero-top-row {
+            z-index: 30;
+            padding: 7rem var(--gutter) 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        @media (min-width: 640px) {
+            .hero-top-row {
+                padding-top: 8rem;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+        }
+        .hero-roles h2 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            color: var(--foreground);
+            font-size: 1.75rem;
+        }
+        @media (min-width: 640px) {
+            .hero-roles h2 { font-size: 3.25rem; }
+        }
+        .hero-desc {
+            max-width: 26rem;
+            font-size: 1.0625rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        @media (min-width: 640px) {
+            .hero-desc { text-align: right; }
+        }
+
+        /* Hero Portrait & Giant Name */
+        .hero-portrait-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 86vh;
+            width: 80vw;
+            z-index: 20;
+            pointer-events: none;
+        }
+        @media (min-width: 640px) {
+            .hero-portrait-wrapper { width: 48vw; }
+        }
+        @media (min-width: 1024px) {
+            .hero-portrait-wrapper { width: 36vw; }
+        }
+        .hero-portrait-wrapper .liquid-media {
+            pointer-events: auto;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-gradient-base {
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0;
+            z-index: 25;
+            height: 26vh;
+            background: linear-gradient(to bottom, transparent, #08080a);
+            pointer-events: none;
+        }
+
+        .hero-giant-name {
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0;
+            transform: translateY(6%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 0.78;
+            letter-spacing: -0.01em;
+            color: var(--accent);
+            font-size: 13rem;
+            pointer-events: none;
+            user-select: none;
+        }
+        @media (min-width: 640px) {
+            .hero-giant-name { font-size: 28rem; }
+        }
+        .hero-giant-name span {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .hero-scroll-cue {
+            position: absolute;
+            bottom: 2rem;
+            left: var(--gutter);
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+        }
+        .hero-scroll-line {
+            width: 2.5rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        /* Marquee Section */
+        .marquee-section {
+            overflow: hidden;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            flex-wrap: nowrap;
+            animation: marquee 22s linear infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track { animation: none; }
+        }
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-display);
+            font-size: 3.25rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+            color: var(--foreground);
+        }
+        .marquee-dot {
+            margin-inline: 2rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-radius: 9999px;
+            background: var(--accent);
+            display: inline-block;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Story Section */
+        #story {
+            padding: var(--section) var(--gutter);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .story-grid {
+                grid-template-columns: repeat(12, 1fr);
+                gap: var(--gutter);
+            }
+            .story-left { grid-column: span 6; }
+            .story-right { grid-column: span 6; padding-top: 0.5rem; }
+        }
+        .story-heading {
+            margin-top: 1.5rem;
+            max-width: 16ch;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 0.95;
+            letter-spacing: -0.01em;
+            font-size: 3.25rem;
+        }
+        @media (min-width: 640px) {
+            .story-heading { font-size: 5rem; }
+        }
+        .story-lead {
+            margin-top: 2rem;
+            max-width: 46ch;
+            font-size: 1.375rem;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+        .principles-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .principle-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 1.5rem;
+            border-top: 1px solid var(--line);
+            padding: 2rem 0;
+        }
+        .principle-item:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+        .principle-num {
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            color: var(--accent);
+        }
+        .principle-content h3 {
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+        }
+        .principle-content p {
+            margin-top: 0.75rem;
+            max-width: 44ch;
+            font-size: 1.0625rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Ventures Section */
+        #ventures {
+            padding: var(--section) var(--gutter);
+        }
+        .section-header-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .section-header-flex {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+        }
+        .ventures-heading {
+            margin-top: 1.5rem;
+            max-width: 14ch;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 0.95;
+            letter-spacing: -0.01em;
+            font-size: 3.25rem;
+        }
+        @media (min-width: 640px) {
+            .ventures-heading { font-size: 5rem; }
+        }
+        .ventures-grid {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 4rem;
+            column-gap: var(--gutter);
+        }
+        @media (min-width: 768px) {
+            .ventures-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .venture-card:nth-child(even) {
+                margin-top: 6rem;
+            }
+        }
+        .venture-card article {
+            display: flex;
+            flex-direction: column;
+        }
+        .liquid-media-container {
+            position: relative;
+            aspect-ratio: 16 / 11;
+            width: 100%;
+            border-radius: 0.125rem;
+            overflow: hidden;
+            background: var(--surface);
+        }
+        .liquid-media-container img, .liquid-media-container video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .liquid-overlay-veil {
+            position: absolute;
+            inset: 0;
+            background: var(--surface);
+            mix-blend-mode: color;
+            opacity: 0.88;
+            transition: opacity 380ms ease;
+            pointer-events: none;
+        }
+        .liquid-media-container:hover .liquid-overlay-veil {
+            opacity: 0;
+        }
+        .liquid-glow-sweep {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 30%, color-mix(in srgb, var(--accent) 35%, transparent) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 380ms ease;
+            pointer-events: none;
+        }
+        .liquid-media-container:hover .liquid-glow-sweep {
+            opacity: 1;
+        }
+        .liquid-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(120% 120% at 50% 120%, color-mix(in srgb, #08080a 70%, transparent), transparent 60%);
+            pointer-events: none;
+        }
+        .liquid-placeholder {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(130% 130% at 30% 15%, var(--surface-2), var(--background));
+            display: grid;
+            place-items: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .venture-meta-row {
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .venture-title {
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            transition: color 340ms ease;
+        }
+        .venture-card:hover .venture-title {
+            color: var(--accent);
+        }
+        .venture-desc {
+            margin-top: 0.5rem;
+            max-width: 42ch;
+            font-size: 1.0625rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .venture-info-right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .venture-year {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+        .venture-outcome {
+            margin-top: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+        }
+        .venture-category {
+            margin-top: 0.75rem;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+        }
+
+        /* Impact Section */
+        #impact {
+            padding: var(--section) var(--gutter);
+        }
+        .impact-heading {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            font-size: 3.25rem;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .impact-heading { font-size: 5rem; }
+        }
+        .impact-dl {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            border-top: 1px solid var(--line);
+        }
+        @media (min-width: 640px) {
+            .impact-dl { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .impact-dl { grid-template-columns: repeat(4, 1fr); }
+        }
+        .impact-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-bottom: 1px solid var(--line);
+            padding: 2.5rem 0;
+        }
+        @media (min-width: 640px) {
+            .impact-cell:nth-child(even) {
+                border-left: 1px solid var(--line);
+                padding-left: 2rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .impact-cell {
+                padding: 3rem 0;
+            }
+            .impact-cell:nth-child(even) {
+                border-left: 1px solid var(--line);
+                padding-left: 2rem;
+            }
+            .impact-cell:nth-child(3), .impact-cell:nth-child(4) {
+                border-left: 1px solid var(--line);
+                padding-left: 2rem;
+            }
+            .impact-cell:nth-child(1) {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+        .impact-figure {
+            font-family: var(--font-display);
+            font-size: 7.5rem;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            transition: color 340ms ease;
+        }
+        .impact-cell:hover .impact-figure {
+            color: var(--accent);
+        }
+        .impact-label {
+            max-width: 20ch;
+            font-size: 1.0625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        /* Voices Section */
+        #voices {
+            padding: var(--section) var(--gutter);
+        }
+        .voices-heading {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            font-size: 3.25rem;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .voices-heading { font-size: 5rem; }
+        }
+        .voices-grid {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .voices-grid {
+                grid-template-columns: repeat(12, 1fr);
+                gap: var(--gutter);
+            }
+            .voices-selector { grid-column: span 5; }
+            .voices-panel { grid-column: span 7; }
+        }
+        .voice-btn {
+            width: 100%;
+            display: flex;
+            align-items: baseline;
+            gap: 1.25rem;
+            border-top: 1px solid var(--line);
+            padding: 1.75rem 0;
+            text-align: left;
+            position: relative;
+            cursor: pointer;
+            background: none;
+            border-bottom: none;
+        }
+        .voice-btn:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+        .voice-idx {
+            font-size: 0.8125rem;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.18em;
+            transition: color 0.2s ease;
+        }
+        .voice-name-wrap {
+            flex-grow: 1;
+        }
+        .voice-name {
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            transition: color 0.2s ease;
+        }
+        .voice-role-sub {
+            margin-top: 0.25rem;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+        .voice-indicator {
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .voice-btn.active .voice-idx { color: var(--accent); }
+        .voice-btn.active .voice-name { color: var(--foreground); }
+        .voice-btn:not(.active) .voice-name { color: var(--muted); }
+        .voice-btn.active .voice-indicator { width: 2.5rem; }
+
+        .voices-panel-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        @media (min-width: 640px) {
+            .voices-panel-inner {
+                grid-template-columns: 1fr auto;
+            }
+            .voices-quote-block { order: 1; }
+            .voices-portrait-wrap { order: 2; width: 16rem; }
+        }
+        .voices-quote-block blockquote p {
+            max-width: 30ch;
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--foreground);
+        }
+        .voices-quote-block footer {
+            margin-top: 2rem;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+        .word-reveal {
+            display: inline-block;
+            transform: translateY(18px);
+            opacity: 0;
+            transition: transform 520ms cubic-bezier(0.165, 0.84, 0.44, 1), opacity 520ms ease;
+        }
+        .word-reveal.revealed {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Contact Footer */
+        #contact {
+            padding-top: var(--section);
+            padding-inline: var(--gutter);
+        }
+        .contact-heading {
+            margin-top: 1.5rem;
+            max-width: 18ch;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 0.95;
+            letter-spacing: -0.01em;
+            font-size: 5rem;
+        }
+        @media (min-width: 640px) {
+            .contact-heading { font-size: 13rem; }
+        }
+        .contact-lead {
+            margin-top: 2rem;
+            max-width: 44ch;
+            font-size: 1.375rem;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+        .email-link-wrapper {
+            margin-top: 3rem;
+            display: inline-block;
+        }
+        .email-link {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            font-family: var(--font-sans);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            word-break: break-all;
+            transition: transform 340s cubic-bezier(0.16, 1, 0.3, 1), color 340ms ease;
+            transform: translateX(0);
+        }
+        @media (min-width: 640px) {
+            .email-link { font-size: 5rem; gap: 1rem; }
+        }
+        .email-link:hover {
+            color: var(--accent);
+            transform: translateX(14px);
+        }
+        .email-arrow {
+            color: var(--accent);
+            display: inline-block;
+        }
+
+        .footer-bar {
+            margin-top: var(--section);
+            border-top: 1px solid var(--line);
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        @media (min-width: 1024px) {
+            .footer-bar {
+                grid-template-columns: repeat(12, 1fr);
+            }
+            .footer-col-left { grid-column: span 6; }
+            .footer-col-mid { grid-column: span 3; }
+            .footer-col-right { grid-column: span 3; text-align: right; }
+        }
+        .footer-sig-name {
+            font-family: var(--font-display);
+            font-size: 3.25rem;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+        .footer-sig-sub {
+            margin-top: 1rem;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+        }
+        .social-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.0625rem;
+            color: var(--muted);
+            transition: color 0.2s ease;
+        }
+        .social-link:hover {
+            color: var(--foreground);
+        }
+        .social-rule {
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .social-link:hover .social-rule {
+            width: 1.5rem;
+        }
+        .footer-copy {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
         }
     </style>
 </head>
-<body class="bg-dark-heavy text-gray-100 antialiased selection:bg-red-600 selection:text-white">
+<body>
 
-    <!-- ส่วนที่ 1: Hero Banner (ใส่ลูกเล่นอนิเมชัน + โลโก้ใหม่) -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-end px-4 sm:px-8 lg:px-16 overflow-hidden">
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="https://lh3.googleusercontent.com/d/1ossfz6ESLKBXKmWRzYydD8n4kk-n7tED" alt="Max Fitness Hero Banner" class="w-full h-full object-cover opacity-90 animate-zoom">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
-        </div>
-        
-        <!-- โลโก้มุมซ้ายบน (โลโก้ PNG ใหม่ + Responsive) -->
-        <div class="absolute top-6 left-4 sm:left-16 z-20">
-            <a href="#hero">
-                <img src="https://lh3.googleusercontent.com/d/1j3rPiiQ7V5yYU3ey8g8gLPcU6XyMUaxG" alt="Max Fitness Logo" class="h-16 sm:h-28 w-auto object-contain drop-shadow-lg">
+    <!-- SVG Liquid Filter definition -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+        <filter id="liquidFilter">
+            <feTurbulence id="liquidTurbulence" type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise" />
+            <feDisplacementMap id="liquidDisplacement" in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <!-- Preloader -->
+    <div id="preloader" aria-hidden="false">
+        <div class="preloader-brand">Marcus Vane</div>
+        <div class="preloader-counter"><span id="counterVal">0</span>%</div>
+    </div>
+
+    <!-- Site Header -->
+    <header>
+        <nav aria-label="Main Navigation">
+            <a href="#top" class="nav-logo">
+                <div class="nav-badge">MV</div>
+                <span class="nav-name">Marcus Vane</span>
             </a>
-        </div>
+            <ul class="nav-links">
+                <li><a href="#story" class="nav-link">Story</a></li>
+                <li><a href="#ventures" class="nav-link">Ventures</a></li>
+                <li><a href="#impact" class="nav-link">Impact</a></li>
+                <li><a href="#voices" class="nav-link">Voices</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="burger-btn" aria-label="Toggle menu">
+                <span class="burger-bar bar-1"></span>
+                <span class="burger-bar bar-2"></span>
+                <span class="burger-bar bar-3"></span>
+            </button>
+        </nav>
+    </header>
 
-        <!-- คำโปรยมุมขวาพร้อมอนิเมชัน -->
-        <div class="relative z-10 max-w-xl text-right my-auto py-20 animate-fade-in">
-            <div class="inline-block bg-yellow-400 text-black font-extrabold px-3 py-1 text-xs uppercase tracking-widest mb-4 shadow-md">
-                NO EXCUSES, JUST RESULTS
-            </div>
-            <h1 class="text-4xl sm:text-7xl font-extrabold tracking-tight uppercase leading-none mb-6 drop-shadow-lg">
-                PUSH YOUR <span class="text-cyan-400">LIMITS</span> 
-                <br>BUILD YOUR <span class="text-red-600">MAX</span>
-            </h1>
-            <p class="text-gray-200 text-sm sm:text-lg font-300 mb-8 leading-relaxed drop-shadow">
-                ยิมที่ออกแบบมาเพื่อคนจริงจังกับการเปลี่ยนแปลงร่างกาย<br>
-                เครื่องมือครบครันระดับโปร<br>
-                บรรยากาศเร้าใจ ปลุกพลังความดุดันในตัวคุณ
-            </p>
-            <div class="flex justify-end gap-4">
-                <a href="#about" class="text-gray-300 hover:text-cyan-400 text-xs tracking-wider transition">
-                    เลื่อนลงเพื่ออ่านต่อ ↓
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" aria-hidden="true">
+        <ul>
+            <li><a href="#story" class="mobile-nav-link">Story</a></li>
+            <li><a href="#ventures" class="mobile-nav-link">Ventures</a></li>
+            <li><a href="#impact" class="mobile-nav-link">Impact</a></li>
+            <li><a href="#voices" class="mobile-nav-link">Voices</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
 
-    <!-- ส่วนที่ 2: About Us -->
-    <section id="about" class="min-h-screen flex items-center py-24 bg-dark-card border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-yellow-400 font-bold uppercase tracking-widest text-sm">ABOUT US</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold uppercase mt-2 mb-6">
-                        สถานที่ปลุกปั้น 
-                        <br><span class="text-red-600">ความแข็งแกร่ง</span> ที่เหนือกว่า
+    <!-- Main Content -->
+    <main>
+
+        <!-- 1) Hero Section -->
+        <section id="top">
+            <div class="hero-top-row">
+                <div class="hero-roles">
+                    <h2>
+                        <span class="reveal-line-wrap"><span class="reveal-line" data-delay="2700">Founder</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" data-delay="2780">Investor</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" data-delay="2860">Operator</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" data-delay="2940">Contrarian</span></span>
                     </h2>
-                    <p class="text-gray-400 leading-relaxed mb-6">
-                        MAX FITNESS ไม่ใช่แค่ฟิตเนสธรรมดา แต่เป็นคอมมูนิตี้ของคนที่มีเป้าหมายชัดเจน เราจัดเตรียมอุปกรณ์นำเข้าเกรดพรีเมียม พื้นที่กว้างขวางแบ่งสัดส่วนชัดเจน ทั้งโซนเวทเทรนนิ่ง คาร์ดิโอ และฟังก์ชั่นนอลเทรนนิ่ง ภายใต้บรรยากาศดุดันกระตุ้นการออกกำลังกายขั้นสุด
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 border-t border-gray-800 pt-6">
-                        <div>
-                            <h3 class="text-3xl font-black text-cyan-400">1,000+</h3>
-                            <p class="text-sm text-gray-400">สมาชิกผู้พิชิตเป้าหมาย</p>
-                        </div>
-                        <div>
-                            <h3 class="text-3xl font-black text-yellow-400">8.30-22.00น.</h3>
-                            <p class="text-sm text-gray-400">เปิดให้บริการทุกวัน</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="relative">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-red-600 rounded-lg blur opacity-30"></div>
-                    <div class="relative bg-black p-4 rounded-lg border border-gray-800">
-                        <img src="https://lh3.googleusercontent.com/d/16wit1GEVhdhtSuRSW1g9TE3bfiz032XK" alt="Max fitness gym" class="w-full h-80 object-cover rounded">
+                <p class="hero-desc fade-slide-up" data-delay="2900">
+                    I start companies that shouldn't be possible — then make them inevitable. Four exits, one playbook: conviction before consensus.
+                </p>
+            </div>
+
+            <!-- Hero Portrait (Bare liquid image with video) -->
+            <div class="hero-portrait-wrapper">
+                <div class="liquid-media-container liquid-interactive" data-scale="30" style="background: transparent;">
+                    <video autoplay muted loop playsinline preload="auto" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23111114'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='20'%3EMarcus Vane%3C/text%3E%3C/svg%3E" style="filter: url(#liquidFilter);">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-a-man-standing-against-a-sunset-41617-large.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="hero-gradient-base"></div>
+
+            <!-- Giant Name H1 -->
+            <h1 class="hero-giant-name" aria-label="Marcus Vane">
+                <span>
+                    <span class="hero-name-line" data-delay="2500" data-stagger="52">Marcus</span>
+                </span>
+                <span>
+                    <span class="hero-name-line" data-delay="2740" data-stagger="52">Vane</span>
+                </span>
+            </h1>
+
+            <div class="hero-scroll-cue fade-slide-up" data-delay="3400">
+                <div class="hero-scroll-line"></div>
+                <span>Scroll to enter</span>
+            </div>
+        </section>
+
+        <!-- 2) Marquee Section -->
+        <section class="marquee-section" aria-label="Operating principles">
+            <div class="marquee-track">
+                <div class="marquee-item">
+                    Build Bold <span class="marquee-dot"></span>
+                    Scale Relentlessly <span class="marquee-dot"></span>
+                    Think In Decades <span class="marquee-dot"></span>
+                    Bet On People <span class="marquee-dot"></span>
+                    Ship The Future <span class="marquee-dot"></span>
+                </div>
+                <div class="marquee-item" aria-hidden="true">
+                    Build Bold <span class="marquee-dot"></span>
+                    Scale Relentlessly <span class="marquee-dot"></span>
+                    Think In Decades <span class="marquee-dot"></span>
+                    Bet On People <span class="marquee-dot"></span>
+                    Ship The Future <span class="marquee-dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3) Story Section -->
+        <section id="story">
+            <div class="story-grid">
+                <div class="story-left fade-slide-up">
+                    <div class="eyebrow-container">
+                        <div class="eyebrow-dot"></div>
+                        <span>The Story</span>
+                    </div>
+                    <h2 class="story-heading">
+                        <span class="reveal-line-wrap"><span class="reveal-line">Conviction is a</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
+                    </h2>
+                    <p class="story-lead">
+                        For twenty years I've backed the version of the future most people couldn't see yet. From a dorm-room prototype to companies serving a hundred million people, the through-line never changed: find the hard problem everyone avoids, assemble the team nobody else could, and out-stubborn the doubt.
+                    </p>
+                </div>
+                <div class="story-right">
+                    <ul class="principles-list">
+                        <li class="principle-item fade-slide-up" style="transition-delay: 0ms;">
+                            <div class="principle-num">01</div>
+                            <div class="principle-content">
+                                <h3>Move before it's obvious</h3>
+                                <p>The best opportunities look like mistakes right up until they look inevitable. I commit while the room is still hesitating.</p>
+                            </div>
+                        </li>
+                        <li class="principle-item fade-slide-up" style="transition-delay: 90ms;">
+                            <div class="principle-num">02</div>
+                            <div class="principle-content">
+                                <h3>Hire founders, not employees</h3>
+                                <p>I build teams of people who would start their own thing — then give them a reason not to. Ownership compounds faster than talent alone.</p>
+                            </div>
+                        </li>
+                        <li class="principle-item fade-slide-up" style="transition-delay: 180ms;">
+                            <div class="principle-num">03</div>
+                            <div class="principle-content">
+                                <h3>Distribution is the product</h3>
+                                <p>Genius unshipped is a hobby. Every venture is engineered around how it reaches the people it was built for.</p>
+                            </div>
+                        </li>
+                        <li class="principle-item fade-slide-up" style="transition-delay: 270ms;">
+                            <div class="principle-num">04</div>
+                            <div class="principle-content">
+                                <h3>Play the long game loudly</h3>
+                                <p>Patience and ambition are not opposites. I think in decades and act with urgency every single day.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4) Ventures Section -->
+        <section id="ventures">
+            <div class="section-header-flex">
+                <div class="fade-slide-up">
+                    <div class="eyebrow-container">
+                        <div class="eyebrow-dot"></div>
+                        <span>Selected Ventures</span>
+                    </div>
+                    <h2 class="ventures-heading">
+                        <span class="reveal-line-wrap"><span class="reveal-line">The work that</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">moved markets.</span></span>
+                    </h2>
+                </div>
+                <div class="fade-slide-up" style="transition-delay: 100ms;">
+                    <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">04 / Companies</span>
+                </div>
+            </div>
+
+            <ul class="ventures-grid">
+                <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
+                    <article>
+                        <div class="liquid-media-container liquid-interactive" data-scale="28">
+                            <div class="liquid-placeholder">Helix Robotics</div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3EHelix Robotics%3C/text%3E%3C/svg%3E" alt="Helix Robotics" style="filter: url(#liquidFilter);" />
+                            <div class="liquid-overlay-veil"></div>
+                            <div class="liquid-glow-sweep"></div>
+                            <div class="liquid-vignette"></div>
+                        </div>
+                        <div class="venture-meta-row">
+                            <div>
+                                <h3 class="venture-title">Helix Robotics</h3>
+                                <p class="venture-desc">Reinvented warehouse logistics with autonomous fleets now running in 40 countries.</p>
+                            </div>
+                            <div class="venture-info-right">
+                                <div class="venture-year">2019</div>
+                                <div class="venture-outcome">Acquired — $1.1B</div>
+                            </div>
+                        </div>
+                        <div class="venture-category">Industrial Automation</div>
+                    </article>
+                </li>
+
+                <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
+                    <article>
+                        <div class="liquid-media-container liquid-interactive" data-scale="28">
+                            <div class="liquid-placeholder">Northwind Energy</div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3ENorthwind Energy%3C/text%3E%3C/svg%3E" alt="Northwind Energy" style="filter: url(#liquidFilter);" />
+                            <div class="liquid-overlay-veil"></div>
+                            <div class="liquid-glow-sweep"></div>
+                            <div class="liquid-vignette"></div>
+                        </div>
+                        <div class="venture-meta-row">
+                            <div>
+                                <h3 class="venture-title">Northwind Energy</h3>
+                                <p class="venture-desc">Brought utility-scale storage to the grid years before the market believed it was viable.</p>
+                            </div>
+                            <div class="venture-info-right">
+                                <div class="venture-year">2015</div>
+                                <div class="venture-outcome">IPO — NYSE: NWND</div>
+                            </div>
+                        </div>
+                        <div class="venture-category">Climate Infrastructure</div>
+                    </article>
+                </li>
+
+                <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
+                    <article>
+                        <div class="liquid-media-container liquid-interactive" data-scale="28">
+                            <div class="liquid-placeholder">Cadence Health</div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3ECadence Health%3C/text%3E%3C/svg%3E" alt="Cadence Health" style="filter: url(#liquidFilter);" />
+                            <div class="liquid-overlay-veil"></div>
+                            <div class="liquid-glow-sweep"></div>
+                            <div class="liquid-vignette"></div>
+                        </div>
+                        <div class="venture-meta-row">
+                            <div>
+                                <h3 class="venture-title">Cadence Health</h3>
+                                <p class="venture-desc">Put a clinician in every pocket and rewired how chronic care gets delivered.</p>
+                            </div>
+                            <div class="venture-info-right">
+                                <div class="venture-year">2011</div>
+                                <div class="venture-outcome">Acquired — $640M</div>
+                            </div>
+                        </div>
+                        <div class="venture-category">Digital Medicine</div>
+                    </article>
+                </li>
+
+                <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
+                    <article>
+                        <div class="liquid-media-container liquid-interactive" data-scale="28">
+                            <div class="liquid-placeholder">Vane Capital</div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3EVane Capital%3C/text%3E%3C/svg%3E" alt="Vane Capital" style="filter: url(#liquidFilter);" />
+                            <div class="liquid-overlay-veil"></div>
+                            <div class="liquid-glow-sweep"></div>
+                            <div class="liquid-vignette"></div>
+                        </div>
+                        <div class="venture-meta-row">
+                            <div>
+                                <h3 class="venture-title">Vane Capital</h3>
+                                <p class="venture-desc">Backing the next generation of contrarian founders building hard, durable companies.</p>
+                            </div>
+                            <div class="venture-info-right">
+                                <div class="venture-year">2008</div>
+                                <div class="venture-outcome">Active — $900M AUM</div>
+                            </div>
+                        </div>
+                        <div class="venture-category">Venture Investing</div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 5) Impact Section -->
+        <section id="impact">
+            <div class="fade-slide-up">
+                <div class="eyebrow-container">
+                    <div class="eyebrow-dot"></div>
+                    <span>By The Numbers</span>
+                </div>
+                <h2 class="impact-heading">
+                    <span class="reveal-line-wrap"><span class="reveal-line">Two decades,</span></span>
+                    <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">measured.</span></span>
+                </h2>
+            </div>
+
+            <dl class="impact-dl">
+                <div class="impact-cell fade-slide-up" style="transition-delay: 0ms;">
+                    <dd class="impact-figure">4</dd>
+                    <dt class="impact-label">Companies founded &amp; exited</dt>
+                </div>
+                <div class="impact-cell fade-slide-up" style="transition-delay: 110ms;">
+                    <dd class="impact-figure">$3.2B</dd>
+                    <dt class="impact-label">Enterprise value created</dt>
+                </div>
+                <div class="impact-cell fade-slide-up" style="transition-delay: 220ms;">
+                    <dd class="impact-figure">120M+</dd>
+                    <dt class="impact-label">People served by his products</dt>
+                </div>
+                <div class="impact-cell fade-slide-up" style="transition-delay: 330ms;">
+                    <dd class="impact-figure">2,400</dd>
+                    <dt class="impact-label">Jobs created across ventures</dt>
+                </div>
+            </dl>
+        </section>
+
+        <!-- 6) Voices Section -->
+        <section id="voices">
+            <div class="fade-slide-up">
+                <div class="eyebrow-container">
+                    <div class="eyebrow-dot"></div>
+                    <span>Voices</span>
+                </div>
+                <h2 class="voices-heading">
+                    <span class="reveal-line-wrap"><span class="reveal-line">What they say.</span></span>
+                </h2>
+            </div>
+
+            <div class="voices-grid">
+                <div class="voices-selector fade-slide-up">
+                    <ul>
+                        <li>
+                            <button class="voice-btn active" data-index="0">
+                                <span class="voice-idx">01</span>
+                                <div class="voice-name-wrap">
+                                    <div class="voice-name">Elena Cardoso</div>
+                                    <div class="voice-role-sub">Managing Partner, Meridian Ventures</div>
+                                </div>
+                                <div class="voice-indicator"></div>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="voice-btn" data-index="1">
+                                <span class="voice-idx">02</span>
+                                <div class="voice-name-wrap">
+                                    <div class="voice-name">David Okonkwo</div>
+                                    <div class="voice-role-sub">Founder &amp; CEO, Cadence Health</div>
+                                </div>
+                                <div class="voice-indicator"></div>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="voice-btn" data-index="2">
+                                <span class="voice-idx">03</span>
+                                <div class="voice-name-wrap">
+                                    <div class="voice-name">Priya Nandakumar</div>
+                                    <div class="voice-role-sub">CEO, Northwind Energy</div>
+                                </div>
+                                <div class="voice-indicator"></div>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="voices-panel fade-slide-up" style="transition-delay: 120ms;">
+                    <div class="voices-panel-inner">
+                        <div class="voices-quote-block">
+                            <blockquote>
+                                <p id="activeQuoteText">“Marcus saw the market three years before the rest of us. Betting alongside him changed the trajectory of my entire career.”</p>
+                                <footer id="activeQuoteFooter">Elena Cardoso — Managing Partner, Meridian Ventures</footer>
+                            </blockquote>
+                        </div>
+                        <div class="voices-portrait-wrap">
+                            <div class="liquid-media-container liquid-interactive" data-scale="22" style="aspect-ratio: 4/5;">
+                                <div class="liquid-placeholder" id="voicePlaceholder">Elena Cardoso</div>
+                                <img id="activeVoiceImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'%3EElena Cardoso%3C/text%3E%3C/svg%3E" alt="Elena Cardoso" style="filter: url(#liquidFilter);" />
+                                <div class="liquid-overlay-veil"></div>
+                                <div class="liquid-glow-sweep"></div>
+                                <div class="liquid-vignette"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ส่วนเพิ่มใหม่: โปรโมชั่นประจำเดือน (Monthly Promotion) -->
-    <section id="promotion" class="py-20 bg-gradient-to-b from-dark-heavy to-black border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-r from-red-950/60 via-zinc-900 to-cyan-950/60 border border-red-600/50 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-1.5 uppercase tracking-widest rounded-bl-xl shadow-lg">
-                    HOT PROMOTION
+        <!-- 7) ContactFooter Section -->
+        <footer id="contact">
+            <div class="fade-slide-up">
+                <div class="eyebrow-container">
+                    <div class="eyebrow-dot"></div>
+                    <span>Let's Build</span>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">LIMITED TIME OFFER</span>
-                        <h2 class="text-3xl sm:text-4xl font-black uppercase mt-2 mb-4 text-white">โปรโมชั่นพิเศษประจำเดือนนี้</h2>
-                        <p class="text-gray-300 text-base mb-6 leading-relaxed">
-                            สมัครสมาชิกรายปีวันนี้ รับสิทธิ์พิเศษจัดเต็ม เล่นไม่อั้น 24 ชั่วโมง พร้อมฟรีค่าแรกเข้าและเทรนเนอร์ส่วนตัวแนะนำเบื้องต้น!
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                            <li class="flex items-center"><span class="text-yellow-400 mr-2">✔</span> ฟรีสิทธิ์เข้าใช้งานทุกโซน ไม่มีวันหยุด</li>
-                            <li class="flex items-center"><span class="text-yellow-400 mr-2">✔</span> ส่วนลดพิเศษสำหรับแพ็กเกจคู่หู (Buddy Package)</li>
+                <h2 class="contact-heading">
+                    <span class="reveal-line-wrap"><span class="reveal-line">Have something the</span></span>
+                    <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">world says can't be done?</span></span>
+                </h2>
+                <p class="contact-lead">
+                    That's usually where I start. I read every message I'm sent.
+                </p>
+                <div class="email-link-wrapper">
+                    <a href="mailto:hello@marcusvane.com" class="email-link">
+                        <span>hello@marcusvane.com</span>
+                        <span class="email-arrow">↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bar fade-slide-up" style="transition-delay: 150ms;">
+                <div class="footer-col-left">
+                    <div class="footer-sig-name">Marcus Vane</div>
+                    <div class="footer-sig-sub">Designed &amp; built with conviction.</div>
+                </div>
+                <div class="footer-col-mid social-nav">
+                    <nav aria-label="Social">
+                        <ul>
+                            <li>
+                                <a href="https://www.linkedin.com" target="_blank" rel="noreferrer noopener" class="social-link">
+                                    <span class="social-rule"></span>
+                                    <span>LinkedIn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://x.com" target="_blank" rel="noreferrer noopener" class="social-link">
+                                    <span class="social-rule"></span>
+                                    <span>X / Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://substack.com" target="_blank" rel="noreferrer noopener" class="social-link">
+                                    <span class="social-rule"></span>
+                                    <span>Substack</span>
+                                </a>
+                            </li>
                         </ul>
-                        <a href="#contact" class="inline-block bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-6 py-3 rounded uppercase tracking-wider transition shadow-lg shadow-cyan-500/20">
-                            รับสิทธิ์โปรโมชั่นนี้
-                        </a>
-                    </div>
-                    <div class="bg-black/60 p-6 rounded-xl border border-gray-800 text-center">
-                        <span class="text-gray-400 text-xs block uppercase tracking-wider mb-1">แพ็กเกจแนะนำยอดฮิต</span>
-                        <h3 class="text-2xl font-black text-yellow-400 mb-2">รายปีสุดคุ้ม VIP</h3>
-                        <div class="text-4xl font-black text-white my-4">คุ้มค่า <span class="text-red-600 text-xl">/ ตลอดชีพ</span></div>
-                        <p class="text-xs text-gray-400 mb-6">สิทธิพิเศษจำนวนจำกัดต่อเดือน สอบถามรายละเอียดเพิ่มเติมได้ทันที</p>
-                        <a href="#contact" class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded uppercase tracking-wider transition">
-                            ติดต่อสมัครเลย
-                        </a>
-                    </div>
+                    </nav>
+                </div>
+                <div class="footer-col-right">
+                    <p class="footer-copy">&copy; 2026 Marcus Vane. All rights reserved.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- ส่วนที่ 3: ภาพกิจกรรมในฟิตเนส -->
-    <section id="activities" class="min-h-screen flex items-center py-24 bg-dark-heavy">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-cyan-400 font-bold uppercase tracking-widest text-sm">ACTIVITIES</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold uppercase mt-2">บรรยากาศและกิจกรรมภายในยิม</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- การ์ดที่ 1 -->
-                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://lh3.googleusercontent.com/d/19Fxpr46afZCEMr0j2ztj2dAGp1-nWsg2" alt="FUNCTIONAL" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-yellow-400 font-bold uppercase">EQUIPMENT</span>
-                        <h3 class="text-xl font-bold mt-1 mb-2">PREMIUM EQUIPMENT & MACHINES</h3>
-                        <p class="text-gray-400 text-sm">ครบเครื่องเรื่องฟิตเนส ทั้งโซนเวทเทรนนิ่งสร้างกล้ามเนื้อ<br>และโซนคาร์ดิโอสมรรถนะสูง ตอบโจทย์ทุกเป้าหมาย</p>
-                    </div>
-                </div>
-                <!-- การ์ดที่ 2 -->
-                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://lh3.googleusercontent.com/d/1c0BBh6v7bxRYg6gOQav107vLVF3sPIOq" alt="Max fitness Class" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-cyan-400 font-bold uppercase">GROUP CLASS</span>
-                        <h3 class="text-xl font-bold mt-1 mb-2">INTENSE WORKOUTS</h3>
-                        <p class="text-gray-400 text-sm">คลาสออกกำลังกายสุดเดือด รีดไขมัน กระชากสปีดหัวใจ<br>ทลายขีดจำกัดความอึดภายใต้การนำของเทรนเนอร์สายลุย</p>
-                    </div>
-                </div>
-                <!-- การ์ดที่ 3 -->
-                <div class="group relative overflow-hidden rounded-lg border border-gray-800 bg-dark-card">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://lh3.googleusercontent.com/d/1e4OcprFSAuWLZaPsyWQjfQEmMDgybYrb" alt="Max fitness Personal Trainer" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-red-500 font-bold uppercase">PROFESSIONAL</span>
-                        <h3 class="text-xl font-bold mt-1 mb-2">ELITE TRAINERS</h3>
-                        <p class="text-gray-400 text-sm">เทรนเนอร์มืออาชีพสายเคี่ยว ประกบติดทุกเซ็ต<br>วางโปรแกรมเฉพาะตัวเพื่อหุ่นในฝันที่ไวขึ้นแบบไม่มีข้อแม้</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <!-- ส่วนที่ 4: Call to action + ช่องทางติดต่อ -->
-    <section id="contact" class="min-h-screen flex items-center py-24 bg-dark-card border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 sm:p-12 border border-gray-800 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-red-600 font-bold uppercase tracking-widest text-sm">JOIN US NOW</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold uppercase mt-2 mb-4">จะมองดูคนอื่นเปลี่ยน <br>หรือจะลุกมาเปลี่ยนตัวเอง?</h2>
-                    <p class="text-gray-400 mb-6">
-                        หยุดรอความพร้อมแล้วพุ่งตัวมาที่ยิม สมัครสมาชิกวันนี้เพื่อสิทธิพิเศษ หรือเข้ามาลองสัมผัสบรรยากาศจริงด้วยตัวคุณเอง
-                    </p>
-                    <div class="space-y-4 text-gray-300">
-                        <div class="flex items-center space-x-3 text-lg">
-                            <span class="text-cyan-400 font-bold">📍 พิกัด:</span>
-                            <a href="https://maps.app.goo.gl/V4hi9kKp5VHTR1Zt5" target="_blank" class="text-gray-300 hover:text-cyan-400 underline transition">
-                                คลิกเปิดแผนที่ Google Maps
-                            </a>
-                        </div>
-                        <div class="flex items-center space-x-3 text-lg">
-                            <span class="text-yellow-400 font-bold">📞 โทรศัพท์:</span>
-                            <span>081-699-0009</span>
-                        </div>
-                        <div class="flex items-center space-x-3 text-lg">
-                            <span class="text-red-500 font-bold">💬 Line Official:</span>
-                            <span>@maxfitness</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- ฟอร์มติดต่อ -->
-                <div class="bg-black p-6 sm:p-8 rounded-xl border border-gray-800">
-                    <h3 class="text-xl font-bold mb-4 uppercase">ส่งข้อความหาเรา</h3>
-                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('ส่งข้อมูลสำเร็จ! ทางเราจะติดต่อกลับโดยเร็วที่สุด');">
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">ชื่อ - นามสกุล</label>
-                            <input type="text" required class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">เบอร์โทรศัพท์</label>
-                            <input type="tel" required class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">ข้อความ / สนใจแพ็กเกจใด</label>
-                            <textarea rows="3" class="w-full bg-gray-900 border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan-400"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded uppercase tracking-wider transition shadow-lg shadow-red-600/30">
-                            ส่งข้อมูลสมัครสมาชิก
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Lenis & Interactive Scripts -->
+    <script type="module">
+        import Lenis from "lenis";
 
-    <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-900 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 MAX FITNESS. All Rights Reserved.</p>
-    </footer>
+        // Initialize Lenis Smooth Scroll
+        const lenis = new Lenis({ smoothWheel: true });
+        window.lenis = lenis;
 
+        function raf(t) {
+            lenis.raf(t);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Smooth scroll intercept for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#top') {
+                    lenis.scrollTo(0);
+                } else {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        lenis.scrollTo(targetEl);
+                    }
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.remove('open');
+                burgerBtn.classList.remove('open');
+            });
+        });
+
+        // Adaptive grid scaling above 1920px
+        const FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666;
+        function applyAdaptiveGrid() {
+            const w = window.innerWidth;
+            const reduction = ((BASE_W - w) / BASE_W) * 100 * COEF;
+            const size = FONT_BASE - (FONT_BASE * reduction) / 100;
+            if (size > FONT_BASE) document.documentElement.style.fontSize = size + "px";
+            else document.documentElement.style.removeProperty("font-size");
+        }
+        applyAdaptiveGrid();
+        window.addEventListener("resize", applyAdaptiveGrid);
+
+        // Preloader Logic
+        const preloader = document.getElementById('preloader');
+        const counterVal = document.getElementById('counterVal');
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Lock scroll initially
+        lenis.stop();
+        window.scrollTo(0, 0);
+
+        if (isReducedMotion) {
+            preloader.style.display = 'none';
+            lenis.start();
+            triggerHeroReveals();
+        } else {
+            let startTime = null;
+            const countDuration = 2000;
+
+            function updateCounter(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const percentage = Math.min(Math.floor((progress / countDuration) * 100), 100);
+                counterVal.textContent = percentage;
+
+                if (progress < countDuration) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counterVal.textContent = "100";
+                    // Fade out labels
+                    preloader.querySelector('.preloader-brand').style.opacity = '0';
+                    preloader.querySelector('.preloader-counter').style.opacity = '0';
+
+                    setTimeout(() => {
+                        preloader.style.transform = 'translateY(-100%)';
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                            lenis.start();
+                            triggerHeroReveals();
+                        }, 650);
+                    }, 300);
+                }
+            }
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Split text helper for Hero Name letters & Hero Roles/Headings
+        function prepareTextReveals() {
+            // Hero name letters
+            document.querySelectorAll('.hero-name-line').forEach(el => {
+                const text = el.textContent;
+                el.textContent = '';
+                const delayBase = parseInt(el.getAttribute('data-delay') || '0');
+                const staggerBase = parseInt(el.getAttribute('data-stagger') || '52');
+
+                text.split('').forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.className = 'reveal-letter';
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    span.style.transitionDelay = (delayBase + (i * staggerBase)) + 'ms';
+                    el.appendChild(span);
+                });
+            });
+        }
+        prepareTextReveals();
+
+        function triggerHeroReveals() {
+            // Reveal letters
+            document.querySelectorAll('.hero-name-line .reveal-letter').forEach(span => {
+                span.classList.add('revealed');
+            });
+            // Reveal hero lines & elements with delays
+            document.querySelectorAll('#top [data-delay]').forEach(el => {
+                const delay = parseInt(el.getAttribute('data-delay') || '0');
+                setTimeout(() => {
+                    if (el.classList.contains('reveal-line')) {
+                        el.classList.add('revealed');
+                    } else if (el.classList.contains('fade-slide-up')) {
+                        el.classList.add('in-view');
+                    }
+                }, delay - 2500); // relative offset after preloader completion
+            });
+        }
+
+        // Intersection Observer for scroll-triggered reveals
+        const observerOptions = {
+            threshold: 0,
+            rootMargin: '0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    target.classList.add('in-view');
+                    // Also trigger any reveal lines inside this target
+                    target.querySelectorAll('.reveal-line').forEach(line => {
+                        line.classList.add('revealed');
+                    });
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-slide-up').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // Mobile menu toggle
+        const burgerBtn = document.querySelector('.burger-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            if (mobileMenu.classList.contains('open')) {
+                lenis.stop();
+            } else {
+                lenis.start();
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                lenis.start();
+            });
+        });
+
+        // Liquid Image Mouse Hover Physics (Spring tension 140 / friction 13)
+        if (!isReducedMotion && window.matchMedia('(min-width: 768px)').matches) {
+            document.querySelectorAll('.liquid-interactive').forEach(container => {
+                const turb = container.closest('main')?.querySelector('#liquidTurbulence') || document.querySelector('#liquidTurbulence');
+                const disp = container.closest('main')?.querySelector('#liquidDisplacement') || document.querySelector('#liquidDisplacement');
+                const maxScale = parseFloat(container.getAttribute('data-scale') || '28');
+
+                let currentScale = 1;
+                let targetScale = 1;
+                let currentFreq = 0.009;
+                let targetFreq = 0.009;
+                let rafId = null;
+
+                function animateLiquid() {
+                    currentScale += (targetScale - currentScale) * 0.15;
+                    currentFreq += (targetFreq - currentFreq) * 0.15;
+
+                    disp.setAttribute('scale', currentScale);
+                    turb.setAttribute('baseFrequency', currentFreq);
+
+                    if (Math.abs(targetScale - currentScale) > 0.01 || Math.abs(targetFreq - currentFreq) > 0.0001) {
+                        rafId = requestAnimationFrame(animateLiquid);
+                    } else {
+                        rafId = null;
+                    }
+                }
+
+                container.addEventListener('mouseenter', () => {
+                    targetScale = maxScale;
+                    targetFreq = 0.022;
+                    if (!rafId) rafId = requestAnimationFrame(animateLiquid);
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    targetScale = 1;
+                    targetFreq = 0.009;
+                    if (!rafId) rafId = requestAnimationFrame(animateLiquid);
+                });
+            });
+        }
+
+        // Voices Data & Interactive Selector
+        const voicesData = [
+            {
+                quote: "Marcus saw the market three years before the rest of us. Betting alongside him changed the trajectory of my entire career.",
+                name: "Elena Cardoso",
+                role: "Managing Partner, Meridian Ventures",
+                imgSvg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='400' height='500' fill='%2317171b'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'>Elena Cardoso</text></svg>`
+            },
+            {
+                quote: "He doesn't just write checks — he gets in the trenches at 6am and refuses to leave until the impossible part is solved.",
+                name: "David Okonkwo",
+                role: "Founder & CEO, Cadence Health",
+                imgSvg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='400' height='500' fill='%2317171b'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'>David Okonkwo</text></svg>`
+            },
+            {
+                quote: "The most demanding mentor I've ever had, and the only reason our company survived its first winter. Relentless, generous, right.",
+                name: "Priya Nandakumar",
+                role: "CEO, Northwind Energy",
+                imgSvg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='400' height='500' fill='%2317171b'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'>Priya Nandakumar</text></svg>`
+            }
+        ];
+
+        const voiceBtns = document.querySelectorAll('.voice-btn');
+        const activeQuoteText = document.getElementById('activeQuoteText');
+        const activeQuoteFooter = document.getElementById('activeQuoteFooter');
+        const activeVoiceImg = document.getElementById('activeVoiceImg');
+        const voicePlaceholder = document.getElementById('voicePlaceholder');
+
+        function renderQuoteWithWordReveal(quoteStr, name, role) {
+            activeQuoteText.innerHTML = '';
+            // add opening curly quote span
+            const openQ = document.createElement('span');
+            openQ.className = 'word-reveal';
+            openQ.textContent = '“';
+            activeQuoteText.appendChild(openQ);
+
+            const words = quoteStr.replace(/^“|”$/g, '').split(' ');
+            words.forEach((word, idx) => {
+                const span = document.createElement('span');
+                span.className = 'word-reveal';
+                span.textContent = word + ' ';
+                span.style.transitionDelay = (idx * 22) + 'ms';
+                activeQuoteText.appendChild(span);
+            });
+
+            // add closing curly quote span
+            const closeQ = document.createElement('span');
+            closeQ.className = 'word-reveal';
+            closeQ.textContent = '”';
+            closeQ.style.transitionDelay = (words.length * 22) + 'ms';
+            activeQuoteText.appendChild(closeQ);
+
+            activeQuoteFooter.textContent = `${name} — ${role}`;
+            voicePlaceholder.textContent = name;
+            activeVoiceImg.src = `data:image/svg+xml;utf8,${encodeURIComponent(voicesData[Array.from(voiceBtns).findIndex(b => b.classList.contains('active'))].imgSvg)}`;
+
+            // Trigger reveal in next tick
+            requestAnimationFrame(() => {
+                activeQuoteText.querySelectorAll('.word-reveal').forEach(w => w.classList.add('revealed'));
+            });
+        }
+
+        // Initial render reveal for active voice
+        renderQuoteWithWordReveal(voicesData[0].quote, voicesData[0].name, voicesData[0].role);
+
+        voiceBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                voiceBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const idx = parseInt(btn.getAttribute('data-index'));
+                const data = voicesData[idx];
+                renderQuoteWithWordReveal(data.quote, data.name, data.role);
+            });
+        });
+    </script>
 </body>
 </html>
