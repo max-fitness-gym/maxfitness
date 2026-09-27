@@ -432,31 +432,32 @@
             pointer-events: none;
         }
 
+        /* ปรับแต่งข้อความ MAX FITNESS ให้เป็นแนวนอนและอยู่ตรงกลางฉากหลัง */
         .hero-giant-name {
             position: absolute;
             inset-inline: 0;
-            bottom: 0;
-            transform: translateY(6%);
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 10;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             font-family: var(--font-display);
             text-transform: uppercase;
-            line-height: 0.78;
-            letter-spacing: -0.01em;
+            line-height: 1;
+            letter-spacing: -0.02em;
             color: var(--accent);
-            font-size: 13rem;
+            font-size: 14vw;
             pointer-events: none;
             user-select: none;
-        }
-        @media (min-width: 640px) {
-            .hero-giant-name { font-size: 28rem; }
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
         }
         .hero-giant-name span {
-            display: block;
+            display: inline-block;
             white-space: nowrap;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .hero-scroll-cue {
@@ -1126,8 +1127,8 @@
                     </h2>
                 </div>
                 <p class="hero-desc fade-slide-up" data-delay="2900">
-                    <B>"เปลี่ยนข้ออ้างให้เป็นพลัง เปลี่ยนไขมันให้เป็นกล้ามเนื้อ ด้วยอุปกรณ์ระดับพรีเมี่ยมและโค้ชผู้เชี่ยวชาญ 
-                        <br>เริ่มต้นทลายขีดจำกัดของคุณได้แล้ววันนี้"</B>
+                    <b>"เปลี่ยนข้ออ้างให้เป็นพลัง เปลี่ยนไขมันให้เป็นกล้ามเนื้อ ด้วยอุปกรณ์ระดับพรีเมี่ยมและโค้ชผู้เชี่ยวชาญ 
+                        <br>เริ่มต้นทลายขีดจำกัดของคุณได้แล้ววันนี้"</b>
                 </p>
             </div>
 
@@ -1143,14 +1144,9 @@
 
             <div class="hero-gradient-base"></div>
 
-            <!-- Giant Name H1 -->
+            <!-- Giant Name H1 (ปรับเป็นแนวนอนพาดขวางตรงกลาง) -->
             <h1 class="hero-giant-name" aria-label="MAX FITNESS">
-                <span>
-                    <span class="hero-name-line" data-delay="2500" data-stagger="52">MAX</span>
-                </span>
-                <span>
-                    <span class="hero-name-line" data-delay="2740" data-stagger="52">FITNESS</span>
-                </span>
+                <span class="hero-name-line" data-delay="2500" data-stagger="40">MAX FITNESS</span>
             </h1>
 
             <div class="hero-scroll-cue fade-slide-up" data-delay="3400">
@@ -1192,12 +1188,12 @@
                         <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
                     </h2>
                     <p class="story-lead">
-                        เพื่อให้ร่างกายคุณพร้อมรับมือในทุกสถานการณ์
-                        <br>จึงเริ่มต้นที่สร้างสถานที่ให้คุณสามารถ
-                        <br>ท้าทายร่างกายของคุณ เพิ่มขีดจำกัด
-                        <br>และยกระดับความมั่นใจในรูปร่าง
-                        <br>ด้วยอุปกรณ์ระดับพรีเมี่ยม
-                        <br>และเทรนเนอรร์มากประสบการณ์
+                        เรามีเป้าหมายเดียวกันกับคุณ — สุขภาพที่ดีขึ้น เพื่อให้คุณพร้อม
+                        <br>ในทุกบทบาทของชีวิต ไม่ว่าจะเป็นงาน ครอบครัว 
+                        <br>หรือความท้าทายในอนาคต 
+                        <br>ที่นี่คือพื้นที่ที่คุณจะได้พัฒนาตัวเองอย่างต่อเนื่อง 
+                        <br>ไม่มีคำว่า “พรุ่งนี้ค่อยเริ่ม” 
+                        <br>เพราะการลงทุนกับสุขภาพ วันนี้ คือจุดเริ่มต้นของสิ่งที่ดีกว่า
                     </p>
                 </div>
                 <div class="story-right">
@@ -1536,7 +1532,6 @@
                     requestAnimationFrame(updateCounter);
                 } else {
                     counterVal.textContent = "100";
-                    // Fade out labels
                     preloader.querySelector('.preloader-brand').style.opacity = '0';
                     preloader.querySelector('.preloader-counter').style.opacity = '0';
 
@@ -1553,14 +1548,13 @@
             requestAnimationFrame(updateCounter);
         }
 
-        // Split text helper for Hero Name letters & Hero Roles/Headings
+        // Split text helper for Hero Name letters
         function prepareTextReveals() {
-            // Hero name letters
             document.querySelectorAll('.hero-name-line').forEach(el => {
                 const text = el.textContent;
                 el.textContent = '';
                 const delayBase = parseInt(el.getAttribute('data-delay') || '0');
-                const staggerBase = parseInt(el.getAttribute('data-stagger') || '52');
+                const staggerBase = parseInt(el.getAttribute('data-stagger') || '40');
 
                 text.split('').forEach((char, i) => {
                     const span = document.createElement('span');
@@ -1574,11 +1568,9 @@
         prepareTextReveals();
 
         function triggerHeroReveals() {
-            // Reveal letters
             document.querySelectorAll('.hero-name-line .reveal-letter').forEach(span => {
                 span.classList.add('revealed');
             });
-            // Reveal hero lines & elements with delays
             document.querySelectorAll('#top [data-delay]').forEach(el => {
                 const delay = parseInt(el.getAttribute('data-delay') || '0');
                 setTimeout(() => {
@@ -1587,7 +1579,7 @@
                     } else if (el.classList.contains('fade-slide-up')) {
                         el.classList.add('in-view');
                     }
-                }, delay - 2500); // relative offset after preloader completion
+                }, delay - 2500);
             });
         }
 
@@ -1602,7 +1594,6 @@
                 if (entry.isIntersecting) {
                     const target = entry.target;
                     target.classList.add('in-view');
-                    // Also trigger any reveal lines inside this target
                     target.querySelectorAll('.reveal-line').forEach(line => {
                         line.classList.add('revealed');
                     });
@@ -1637,7 +1628,7 @@
             });
         });
 
-        // Liquid Image Mouse Hover Physics (Spring tension 140 / friction 13)
+        // Liquid Image Mouse Hover Physics
         if (!isReducedMotion && window.matchMedia('(min-width: 768px)').matches) {
             document.querySelectorAll('.liquid-interactive').forEach(container => {
                 const turb = container.closest('main')?.querySelector('#liquidTurbulence') || document.querySelector('#liquidTurbulence');
@@ -1708,7 +1699,6 @@
 
         function renderQuoteWithWordReveal(quoteStr, name, role) {
             activeQuoteText.innerHTML = '';
-            // add opening curly quote span
             const openQ = document.createElement('span');
             openQ.className = 'word-reveal';
             openQ.textContent = '“';
@@ -1723,7 +1713,6 @@
                 activeQuoteText.appendChild(span);
             });
 
-            // add closing curly quote span
             const closeQ = document.createElement('span');
             closeQ.className = 'word-reveal';
             closeQ.textContent = '”';
@@ -1734,13 +1723,11 @@
             voicePlaceholder.textContent = name;
             activeVoiceImg.src = `data:image/svg+xml;utf8,${encodeURIComponent(voicesData[Array.from(voiceBtns).findIndex(b => b.classList.contains('active'))].imgSvg)}`;
 
-            // Trigger reveal in next tick
             requestAnimationFrame(() => {
                 activeQuoteText.querySelectorAll('.word-reveal').forEach(w => w.classList.add('revealed'));
             });
         }
 
-        // Initial render reveal for active voice
         renderQuoteWithWordReveal(voicesData[0].quote, voicesData[0].name, voicesData[0].role);
 
         voiceBtns.forEach(btn => {
