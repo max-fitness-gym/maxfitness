@@ -399,16 +399,16 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 85vh; /* ขนาดมือถือ */
+            height: 85vh;
             width: 100vw;
             z-index: 20;
             pointer-events: none;
             display: flex;
             justify-content: center;
-            align-items: flex-end; /* จัดให้รูปชนขอบล่าง */
+            align-items: flex-end;
         }
         @media (min-width: 640px) {
-            .hero-portrait-wrapper { height: 95vh; } /* ขนาดใหญ่ขึ้นบนคอมพิวเตอร์ */
+            .hero-portrait-wrapper { height: 95vh; }
         }
         
         .hero-portrait-wrapper img {
@@ -428,7 +428,6 @@
             pointer-events: none;
         }
 
-        /* ปรับแต่งข้อความ MAX FITNESS เป็นแนวตั้ง 2 บรรทัด */
         .hero-giant-name {
             position: absolute;
             inset-inline: 0;
@@ -436,15 +435,15 @@
             transform: translateY(-50%);
             z-index: 10;
             display: flex;
-            flex-direction: column; /* เปลี่ยนเป็นเรียงบน-ล่าง */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: var(--font-display);
             text-transform: uppercase;
-            line-height: 0.85; /* ปรับความห่างระหว่างบรรทัด */
+            line-height: 0.85;
             letter-spacing: -0.02em;
             color: var(--accent);
-            font-size: 16vw; /* ปรับขนาดเป็น 16vw */
+            font-size: 16vw;
             pointer-events: none;
             user-select: none;
             width: 100%;
@@ -655,98 +654,11 @@
             object-fit: cover;
             object-position: center;
         }
-        .liquid-overlay-veil {
-            position: absolute;
-            inset: 0;
-            background: var(--surface);
-            mix-blend-mode: color;
-            opacity: 0.88;
-            transition: opacity 380ms ease;
-            pointer-events: none;
-        }
-        .liquid-media-container:hover .liquid-overlay-veil {
-            opacity: 0;
-        }
-        .liquid-glow-sweep {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, transparent 30%, color-mix(in srgb, var(--accent) 35%, transparent) 50%, transparent 70%);
-            opacity: 0;
-            transition: opacity 380ms ease;
-            pointer-events: none;
-        }
-        .liquid-media-container:hover .liquid-glow-sweep {
-            opacity: 1;
-        }
         .liquid-vignette {
             position: absolute;
             inset: 0;
             background: radial-gradient(120% 120% at 50% 120%, color-mix(in srgb, #08080a 70%, transparent), transparent 60%);
             pointer-events: none;
-        }
-        .liquid-placeholder {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(130% 130% at 30% 15%, var(--surface-2), var(--background));
-            display: grid;
-            place-items: center;
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .venture-meta-row {
-            margin-top: 1.5rem;
-            border-top: 1px solid var(--line);
-            padding-top: 1.25rem;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1.5rem;
-        }
-        .venture-title {
-            font-family: var(--font-sans);
-            font-size: 1.75rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            transition: color 340ms ease;
-        }
-        .venture-card:hover .venture-title {
-            color: var(--accent);
-        }
-        .venture-desc {
-            margin-top: 0.5rem;
-            max-width: 42ch;
-            font-size: 1.0625rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-        .venture-info-right {
-            text-align: right;
-            flex-shrink: 0;
-        }
-        .venture-year {
-            font-size: 0.8125rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--muted);
-        }
-        .venture-outcome {
-            margin-top: 0.5rem;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--accent);
-        }
-        .venture-category {
-            margin-top: 0.75rem;
-            font-size: 0.8125rem;
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            color: var(--muted);
         }
 
         /* Impact Section */
@@ -981,7 +893,8 @@
             font-weight: 600;
             letter-spacing: -0.01em;
             word-break: break-all;
-            transition: transform 340s cubic-bezier(0.16, 1, 0.3, 1), color 340ms ease;
+            /* แก้ไขจุดผิดพลาด 340s -> 340ms */
+            transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), color 340ms ease;
             transform: translateX(0);
         }
         @media (min-width: 640px) {
@@ -1103,9 +1016,9 @@
     <div class="mobile-menu" aria-hidden="true">
         <ul>
             <li><a href="#story" class="mobile-nav-link">Story</a></li>
-            <li><a href="#ventures" class="mobile-nav-link">Ventures</a></li>
-            <li><a href="#impact" class="mobile-nav-link">Impact</a></li>
-            <li><a href="#voices" class="mobile-nav-link">Voices</a></li>
+            <li><a href="#ventures" class="mobile-nav-link">Promotion</a></li>
+            <li><a href="#impact" class="mobile-nav-link">Customer</a></li>
+            <li><a href="#voices" class="mobile-nav-link">Testimonial</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
     </div>
@@ -1224,51 +1137,45 @@
             </div>
         </section>
 
-       <!-- 4) Ventures Section -->
-<section id="ventures">
-    <div class="section-header-flex">
-        <div class="fade-slide-up">
-            <div class="eyebrow-container">
-                <div class="eyebrow-dot"></div>
-                <span>PROMOTION</span>
+        <!-- 4) Ventures Section (Promotion - แก้ไขให้แสดงภาพสีตลอดเวลา) -->
+        <section id="ventures">
+            <div class="section-header-flex">
+                <div class="fade-slide-up">
+                    <div class="eyebrow-container">
+                        <div class="eyebrow-dot"></div>
+                        <span>PROMOTION</span>
+                    </div>
+                    <h2 class="ventures-heading">
+                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
+                    </h2>
+                </div>
+                <div class="fade-slide-up" style="transition-delay: 100ms;">
+                    <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">02 / Packages</span>
+                </div>
             </div>
-            <h2 class="ventures-heading">
-                <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
-            </h2>
-        </div>
-        <div class="fade-slide-up" style="transition-delay: 100ms;">
-            <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">02 / Packages</span>
-        </div>
-    </div>
 
-    <ul class="ventures-grid">
-        <!-- รูปภาพช่องที่ 1 -->
-        <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
-            <article>
-                <div class="liquid-media-container liquid-interactive" data-scale="28">
-                    <!-- ใส่ลิงก์/ที่อยู่ไฟล์รูปภาพที่ 1 ในช่อง src -->
-                    <img src="https://lh3.googleusercontent.com/d/1gJ4i9oQ9RdSkSs_93Jjl1eW-jTNj_nD" alt="Promotion Image 1" style="filter: url(#liquidFilter);" />
-                    <div class="liquid-overlay-veil"></div>
-                    <div class="liquid-glow-sweep"></div>
-                    <div class="liquid-vignette"></div>
-                </div>
-            </article>
-        </li>
+            <ul class="ventures-grid">
+                <!-- รูปภาพช่องที่ 1 -->
+                <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
+                    <article>
+                        <div class="liquid-media-container">
+                            <img src="https://lh3.googleusercontent.com/d/1gJ4i9oQ9RdSkSs_93Jjl1eW-jTNj_nD" alt="Promotion Image 1" />
+                            <div class="liquid-vignette"></div>
+                        </div>
+                    </article>
+                </li>
 
-        <!-- รูปภาพช่องที่ 2 -->
-        <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
-            <article>
-                <div class="liquid-media-container liquid-interactive" data-scale="28">
-                    <!-- ใส่ลิงก์/ที่อยู่ไฟล์รูปภาพที่ 2 ในช่อง src -->
-                    <img src="https://lh3.googleusercontent.com/d/1OU-pa1ntYWO12sODbmcZtlzlZlioBDXJ" alt="Promotion Image 2" style="filter: url(#liquidFilter);" />
-                    <div class="liquid-overlay-veil"></div>
-                    <div class="liquid-glow-sweep"></div>
-                    <div class="liquid-vignette"></div>
-                </div>
-            </article>
-        </li>
-    </ul>
-</section>
+                <!-- รูปภาพช่องที่ 2 -->
+                <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
+                    <article>
+                        <div class="liquid-media-container">
+                            <img src="https://lh3.googleusercontent.com/d/1OU-pa1ntYWO12sODbmcZtlzlZlioBDXJ" alt="Promotion Image 2" />
+                            <div class="liquid-vignette"></div>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
 
         <!-- 5) Impact Section -->
         <section id="impact">
@@ -1363,9 +1270,6 @@
                             <div class="liquid-media-container liquid-interactive" data-scale="22" style="aspect-ratio: 4/5;">
                                 <div class="liquid-placeholder" id="voicePlaceholder">Elena Cardoso</div>
                                 <img id="activeVoiceImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'%3EElena Cardoso%3C/text%3E%3C/svg%3E" alt="Elena Cardoso" style="filter: url(#liquidFilter);" />
-                                <div class="liquid-overlay-veil"></div>
-                                <div class="liquid-glow-sweep"></div>
-                                <div class="liquid-vignette"></div>
                             </div>
                         </div>
                     </div>
