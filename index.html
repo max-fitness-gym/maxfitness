@@ -11,23 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Lenis smooth scroll importmap -->
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.min.js"></script>
+    <script type="importmap">
+    { "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.mjs" } }
+    </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // เรียกใช้ Lenis จาก window โดยตรง
-    if (window.Lenis) {
-      const lenis = new Lenis({ smoothWheel: true });
-      window.lenis = lenis;
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-    }
-  });
-</script>
+    <style>
         /* CSS Reset & Variables */
         *, *::before, *::after {
             margin: 0;
@@ -1236,71 +1224,51 @@
             </div>
         </section>
 
-        <!-- 4) Ventures Section -->
-        <section id="ventures">
-            <div class="section-header-flex">
-                <div class="fade-slide-up">
-                    <div class="eyebrow-container">
-                        <div class="eyebrow-dot"></div>
-                        <span>PROMOTION</span>
-                    </div>
-                    <h2 class="ventures-heading">
-                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
-                    </h2>
-                </div>
-                <div class="fade-slide-up" style="transition-delay: 100ms;">
-                    <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">02 / Packages</span>
-                </div>
+       <!-- 4) Ventures Section -->
+<section id="ventures">
+    <div class="section-header-flex">
+        <div class="fade-slide-up">
+            <div class="eyebrow-container">
+                <div class="eyebrow-dot"></div>
+                <span>PROMOTION</span>
             </div>
+            <h2 class="ventures-heading">
+                <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES YOUR LIFE</span></span>
+            </h2>
+        </div>
+        <div class="fade-slide-up" style="transition-delay: 100ms;">
+            <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);">02 / Packages</span>
+        </div>
+    </div>
 
-            <ul class="ventures-grid">
-                <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
-                    <article>
-                        <div class="liquid-media-container liquid-interactive" data-scale="28">
-                            <div class="liquid-placeholder">Helix Robotics</div>
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3EHelix Robotics%3C/text%3E%3C/svg%3E" alt="Helix Robotics" style="filter: url(#liquidFilter);" />
-                            <div class="liquid-overlay-veil"></div>
-                            <div class="liquid-glow-sweep"></div>
-                            <div class="liquid-vignette"></div>
-                        </div>
-                        <div class="venture-meta-row">
-                            <div>
-                                <h3 class="venture-title">Helix Robotics</h3>
-                                <p class="venture-desc">Reinvented warehouse logistics with autonomous fleets now running in 40 countries.</p>
-                            </div>
-                            <div class="venture-info-right">
-                                <div class="venture-year">2019</div>
-                                <div class="venture-outcome">Acquired — $1.1B</div>
-                            </div>
-                        </div>
-                        <div class="venture-category">Industrial Automation</div>
-                    </article>
-                </li>
+    <ul class="ventures-grid">
+        <!-- รูปภาพช่องที่ 1 -->
+        <li class="venture-card fade-slide-up" style="transition-delay: 0ms;">
+            <article>
+                <div class="liquid-media-container liquid-interactive" data-scale="28">
+                    <!-- ใส่ลิงก์/ที่อยู่ไฟล์รูปภาพที่ 1 ในช่อง src -->
+                    <img src="https://lh3.googleusercontent.com/d/1gJ4i9oQ9RdSkSs_93Jjl1eW-jTNj_nD" alt="Promotion Image 1" style="filter: url(#liquidFilter);" />
+                    <div class="liquid-overlay-veil"></div>
+                    <div class="liquid-glow-sweep"></div>
+                    <div class="liquid-vignette"></div>
+                </div>
+            </article>
+        </li>
 
-                <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
-                    <article>
-                        <div class="liquid-media-container liquid-interactive" data-scale="28">
-                            <div class="liquid-placeholder">Northwind Energy</div>
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'%3E%3Crect width='1600' height='1100' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='40'%3ENorthwind Energy%3C/text%3E%3C/svg%3E" alt="Northwind Energy" style="filter: url(#liquidFilter);" />
-                            <div class="liquid-overlay-veil"></div>
-                            <div class="liquid-glow-sweep"></div>
-                            <div class="liquid-vignette"></div>
-                        </div>
-                        <div class="venture-meta-row">
-                            <div>
-                                <h3 class="venture-title">Northwind Energy</h3>
-                                <p class="venture-desc">Brought utility-scale storage to the grid years before the market believed it was viable.</p>
-                            </div>
-                            <div class="venture-info-right">
-                                <div class="venture-year">2015</div>
-                                <div class="venture-outcome">IPO — NYSE: NWND</div>
-                            </div>
-                        </div>
-                        <div class="venture-category">Climate Infrastructure</div>
-                    </article>
-                </li>
-            </ul>
-        </section>
+        <!-- รูปภาพช่องที่ 2 -->
+        <li class="venture-card fade-slide-up" style="transition-delay: 120ms;">
+            <article>
+                <div class="liquid-media-container liquid-interactive" data-scale="28">
+                    <!-- ใส่ลิงก์/ที่อยู่ไฟล์รูปภาพที่ 2 ในช่อง src -->
+                    <img src="https://lh3.googleusercontent.com/d/1OU-pa1ntYWO12sODbmcZtlzlZlioBDXJ" alt="Promotion Image 2" style="filter: url(#liquidFilter);" />
+                    <div class="liquid-overlay-veil"></div>
+                    <div class="liquid-glow-sweep"></div>
+                    <div class="liquid-vignette"></div>
+                </div>
+            </article>
+        </li>
+    </ul>
+</section>
 
         <!-- 5) Impact Section -->
         <section id="impact">
