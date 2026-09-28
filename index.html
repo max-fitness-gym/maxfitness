@@ -52,7 +52,7 @@
             --accent: #ff3b1d;
             --accent-2: #ff6a3d;
             --gutter: 2.5rem;
-            --section: 9rem;
+            --section: 7rem;
             --font-display: "Anton", sans-serif;
             --font-sans: "Onest", sans-serif;
         }
@@ -76,12 +76,15 @@
 
         /* Mobile-first responsive font scaling */
         html { font-size: 4.444444vw; } /* mobile default */
-        :root { --gutter: 16px; }
+        :root { --gutter: 16px; --section: 4rem; }
         @media (min-width: 640px) {
             html { font-size: 1.5625vw; }
-            :root { --gutter: 2.5rem; }
+            :root { --gutter: 2.5rem; --section: 6rem; }
         }
-        @media (min-width: 1024px) { html { font-size: 1.111111vw; } }
+        @media (min-width: 1024px) {
+            html { font-size: 1.111111vw; }
+            :root { --section: 7rem; }
+        }
         @media (min-width: 1440px) { html { font-size: 0.833333vw; } }
 
         ::selection {
@@ -390,18 +393,17 @@
         }
         .hero-desc {
             max-width: 26rem;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--muted);
             line-height: 1.6;
-            display: none;
-        }
-        @media (min-width: 480px) {
-            .hero-desc { display: block; }
+            display: block;
+            margin-top: 0.5rem;
         }
         @media (min-width: 640px) {
             .hero-desc {
                 text-align: right;
                 font-size: 1.0625rem;
+                margin-top: 0;
             }
         }
 
@@ -512,15 +514,15 @@
             padding-bottom: 2rem;
             position: relative;
         }
-        .marquee-track {
+        .marquee-inner {
             display: flex;
             width: max-content;
             flex-wrap: nowrap;
-            animation: marquee 18s linear infinite;
+            animation: marqueeScroll 20s linear infinite;
             will-change: transform;
         }
         @media (prefers-reduced-motion: reduce) {
-            .marquee-track { animation: none; }
+            .marquee-inner { animation: none; }
         }
         .marquee-item {
             display: flex;
@@ -531,6 +533,7 @@
             letter-spacing: -0.01em;
             white-space: nowrap;
             color: var(--foreground);
+            flex-shrink: 0;
         }
         .marquee-dot {
             margin-inline: 2rem;
@@ -539,10 +542,11 @@
             border-radius: 9999px;
             background: var(--accent);
             display: inline-block;
+            flex-shrink: 0;
         }
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        @keyframes marqueeScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* Story Section */
@@ -645,13 +649,15 @@
         }
         .ventures-heading {
             margin-top: 1.5rem;
-            max-width: 24ch;
+            max-width: 100%;
             font-family: var(--font-display);
             text-transform: uppercase;
-            line-height: 1.05;
+            line-height: 1.0;
             letter-spacing: -0.01em;
-            font-size: 2.75rem;
-            word-break: keep-all;
+            font-size: 2.1rem;
+        }
+        @media (min-width: 480px) {
+            .ventures-heading { font-size: 2.75rem; }
         }
         @media (min-width: 640px) {
             .ventures-heading { font-size: 4.25rem; }
@@ -783,11 +789,15 @@
             text-transform: uppercase;
             line-height: 1;
             letter-spacing: -0.01em;
-            font-size: 3.25rem;
+            font-size: 2.25rem;
             margin-top: 1.5rem;
+            white-space: nowrap;
+        }
+        @media (min-width: 480px) {
+            .voices-heading { font-size: 3rem; }
         }
         @media (min-width: 640px) {
-            .voices-heading { font-size: 5rem; }
+            .voices-heading { font-size: 5rem; white-space: normal; }
         }
         .voices-grid {
             margin-top: 4rem;
@@ -1117,21 +1127,11 @@
 
         <!-- 2) Marquee Section -->
         <section class="marquee-section" aria-label="Operating principles">
-            <div class="marquee-track">
-                <div class="marquee-item">
-                    WEIGHT LOSS <span class="marquee-dot"></span>
-                    YOGA <span class="marquee-dot"></span>
-                    BOXING <span class="marquee-dot"></span>
-                    FITNESS <span class="marquee-dot"></span>
-                    PERSONAL TRAINING <span class="marquee-dot"></span>
-                </div>
-                <div class="marquee-item" aria-hidden="true">
-                    WEIGHT LOSS <span class="marquee-dot"></span>
-                    YOGA <span class="marquee-dot"></span>
-                    BOXING <span class="marquee-dot"></span>
-                    FITNESS <span class="marquee-dot"></span>
-                    PERSONAL TRAINING <span class="marquee-dot"></span>
-                </div>
+            <div class="marquee-inner">
+                <div class="marquee-item">WEIGHT LOSS <span class="marquee-dot"></span> YOGA <span class="marquee-dot"></span> BOXING <span class="marquee-dot"></span> FITNESS <span class="marquee-dot"></span> PERSONAL TRAINING <span class="marquee-dot"></span></div>
+                <div class="marquee-item" aria-hidden="true">WEIGHT LOSS <span class="marquee-dot"></span> YOGA <span class="marquee-dot"></span> BOXING <span class="marquee-dot"></span> FITNESS <span class="marquee-dot"></span> PERSONAL TRAINING <span class="marquee-dot"></span></div>
+                <div class="marquee-item" aria-hidden="true">WEIGHT LOSS <span class="marquee-dot"></span> YOGA <span class="marquee-dot"></span> BOXING <span class="marquee-dot"></span> FITNESS <span class="marquee-dot"></span> PERSONAL TRAINING <span class="marquee-dot"></span></div>
+                <div class="marquee-item" aria-hidden="true">WEIGHT LOSS <span class="marquee-dot"></span> YOGA <span class="marquee-dot"></span> BOXING <span class="marquee-dot"></span> FITNESS <span class="marquee-dot"></span> PERSONAL TRAINING <span class="marquee-dot"></span></div>
             </div>
         </section>
 
@@ -1196,7 +1196,8 @@
                         <span>PROMOTION</span>
                     </div>
                     <h2 class="ventures-heading">
-                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT <br>CHANGES YOUR LIFE</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT CHANGES</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay:90ms;">YOUR LIFE</span></span>
                     </h2>
                 </div>
                 <div class="fade-slide-up" style="transition-delay: 100ms;">
@@ -1458,7 +1459,6 @@
         const preloader = document.getElementById('preloader');
         const counterVal = document.getElementById('counterVal');
         const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
         // Lock scroll initially
         lenis.stop();
         window.scrollTo(0, 0);
