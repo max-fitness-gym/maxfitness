@@ -546,7 +546,7 @@
         }
         @keyframes marqueeScroll {
             0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-25%); }
         }
 
         /* Story Section */
@@ -1143,9 +1143,9 @@
                         <div class="eyebrow-dot"></div>
                         <span>The Story</span>
                     </div>
-                    <h2 class="story-heading">
+                    <h2 class="story-heading" style="letter-spacing: 0.04em;">
                         <span class="reveal-line-wrap"><span class="reveal-line">FITNESS IS A</span></span>
-                        <span class="reveal-line-wrap"><span class="reveal-line" style="letter-spacing: 0.03em; "transition-delay: 90ms;">competitive advantage.</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
                     </h2>
                     <p class="story-lead">
                         เพื่อให้คุณพร้อมรับมือกับทุกสถานการณ์ เราจึงออกแบบสถานที่ให้คุณได้ท้าทายขีดจำกัดของตัวเอง ยกระดับความมั่นใจ ด้วยอุปกรณ์ทันสมัย เกรดพรีเมี่ยม และเทรนเนอร์มากประสบการณ์
@@ -1197,7 +1197,7 @@
                     </div>
                     <h2 class="ventures-heading">
                         <span class="reveal-line-wrap"><span class="reveal-line">THE PACKAGE THAT</span></span>
-                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay:90ms;"> CHANGES YOUR LIFE</span></span>
+                        <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay:90ms;">CHANGES YOUR LIFE</span></span>
                     </h2>
                 </div>
                 <div class="fade-slide-up" style="transition-delay: 100ms;">
@@ -1389,7 +1389,6 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
-
         // Smooth scroll intercept for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1409,17 +1408,7 @@
             });
         });
 
-        // Adaptive grid scaling above 1920px
-        const FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666;
-        function applyAdaptiveGrid() {
-            const w = window.innerWidth;
-            const reduction = ((BASE_W - w) / BASE_W) * 100 * COEF;
-            const size = FONT_BASE - (FONT_BASE * reduction) / 100;
-            if (size > FONT_BASE) document.documentElement.style.fontSize = size + "px";
-            else document.documentElement.style.removeProperty("font-size");
-        }
-        applyAdaptiveGrid();
-        window.addEventListener("resize", applyAdaptiveGrid);
+        // Note: font scaling handled via CSS vw media queries
 
         // Split text helper for Hero Name letters — must run before preloader
         function prepareTextReveals() {
