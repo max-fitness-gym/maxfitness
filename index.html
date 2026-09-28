@@ -360,10 +360,10 @@
         }
         .hero-top-row {
             z-index: 30;
-            padding: 7rem var(--gutter) 0;
+            padding: 5rem var(--gutter) 0;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
         }
         @media (min-width: 640px) {
             .hero-top-row {
@@ -380,19 +380,29 @@
             line-height: 1.05;
             letter-spacing: -0.01em;
             color: var(--foreground);
-            font-size: 1.75rem;
+            font-size: 1.35rem;
+        }
+        @media (min-width: 480px) {
+            .hero-roles h2 { font-size: 1.75rem; }
         }
         @media (min-width: 640px) {
             .hero-roles h2 { font-size: 3.25rem; }
         }
         .hero-desc {
             max-width: 26rem;
-            font-size: 1.0625rem;
+            font-size: 0.875rem;
             color: var(--muted);
             line-height: 1.6;
+            display: none;
+        }
+        @media (min-width: 480px) {
+            .hero-desc { display: block; }
         }
         @media (min-width: 640px) {
-            .hero-desc { text-align: right; }
+            .hero-desc {
+                text-align: right;
+                font-size: 1.0625rem;
+            }
         }
 
         /* Hero Portrait & Giant Name */
@@ -401,7 +411,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 85vh;
+            height: 55vh;
             width: 100vw;
             z-index: 20;
             pointer-events: none;
@@ -410,9 +420,12 @@
             align-items: flex-end;
         }
         @media (min-width: 640px) {
+            .hero-portrait-wrapper { height: 80vh; }
+        }
+        @media (min-width: 1024px) {
             .hero-portrait-wrapper { height: 95vh; }
         }
-        
+
         .hero-portrait-wrapper img {
             height: 100%;
             width: auto;
@@ -433,8 +446,6 @@
         .hero-giant-name {
             position: absolute;
             inset-inline: 0;
-            top: 50%;
-            transform: translateY(-50%);
             z-index: 10;
             display: flex;
             flex-direction: column;
@@ -445,13 +456,24 @@
             line-height: 0.85;
             letter-spacing: -0.02em;
             color: var(--accent);
-            font-size: 16vw;
             pointer-events: none;
             user-select: none;
             width: 100%;
             text-align: center;
             white-space: nowrap;
             margin: 0;
+            /* Mobile: sit in lower half, below portrait overlap zone */
+            bottom: 6vh;
+            top: auto;
+            font-size: 22vw;
+        }
+        @media (min-width: 640px) {
+            .hero-giant-name {
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-50%);
+                font-size: 18vw;
+            }
         }
         .hero-giant-name span {
             display: inline-block;
@@ -461,16 +483,19 @@
 
         .hero-scroll-cue {
             position: absolute;
-            bottom: 2rem;
+            bottom: 1.25rem;
             left: var(--gutter);
             z-index: 30;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.22em;
             color: var(--muted);
+        }
+        @media (min-width: 640px) {
+            .hero-scroll-cue { bottom: 2rem; font-size: 0.8125rem; }
         }
         .hero-scroll-line {
             width: 2.5rem;
@@ -491,7 +516,8 @@
             display: flex;
             width: max-content;
             flex-wrap: nowrap;
-            animation: marquee 22s linear infinite;
+            animation: marquee 18s linear infinite;
+            will-change: transform;
         }
         @media (prefers-reduced-motion: reduce) {
             .marquee-track { animation: none; }
@@ -554,10 +580,16 @@
         .story-lead {
             margin-top: 2rem;
             max-width: 46ch;
-            font-size: 1.375rem;
+            font-size: 1.125rem;
             color: var(--muted);
-            line-height: 1.45;
+            line-height: 1.7;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
+        @media (min-width: 640px) {
+            .story-lead { font-size: 1.375rem; line-height: 1.5; }
+        }
+
         .principles-list {
             display: flex;
             flex-direction: column;
@@ -840,11 +872,20 @@
         .voices-quote-block blockquote p {
             max-width: 30ch;
             font-family: var(--font-sans);
-            font-size: 1.75rem;
+            font-size: 1.25rem;
             font-weight: 500;
-            line-height: 1.3;
-            letter-spacing: -0.01em;
+            line-height: 1.6;
+            letter-spacing: normal;
+            word-spacing: 0.05em;
+            word-break: break-word;
+            overflow-wrap: break-word;
             color: var(--foreground);
+        }
+        @media (min-width: 640px) {
+            .voices-quote-block blockquote p { font-size: 1.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .voices-quote-block blockquote p { font-size: 1.75rem; }
         }
         .voices-quote-block footer {
             margin-top: 2rem;
@@ -854,13 +895,13 @@
             color: var(--muted);
         }
         .word-reveal {
-            display: inline-block;
-            transform: translateY(18px);
+            display: inline;
+            transform: none;
             opacity: 0;
-            transition: transform 520ms cubic-bezier(0.165, 0.84, 0.44, 1), opacity 520ms ease;
+            transition: opacity 520ms ease;
+            white-space: normal;
         }
         .word-reveal.revealed {
-            transform: translateY(0);
             opacity: 1;
         }
 
@@ -1107,12 +1148,7 @@
                         <span class="reveal-line-wrap"><span class="reveal-line" style="transition-delay: 90ms;">competitive advantage.</span></span>
                     </h2>
                     <p class="story-lead">
-                        เพื่อให้คุณพร้อมรับมือกับทุกสถานการณ์
-                        <br>เราจึงออกแบบสถานที่
-                        <br>ให้คุณได้ท้าทายขีดจำกัดของตัวเอง
-                        <br>ยกระดับความมั่นใจ
-                        <br>ด้วยอุปกรณ์ทันสมัย เกรดพรีเมี่ยม
-                        <br>และเทรนเนอร์มากประสบการณ์
+                        เพื่อให้คุณพร้อมรับมือกับทุกสถานการณ์ เราจึงออกแบบสถานที่ให้คุณได้ท้าทายขีดจำกัดของตัวเอง ยกระดับความมั่นใจ ด้วยอุปกรณ์ทันสมัย เกรดพรีเมี่ยม และเทรนเนอร์มากประสบการณ์
                     </p>
                 </div>
                 <div class="story-right">
