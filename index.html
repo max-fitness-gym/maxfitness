@@ -74,13 +74,15 @@
             overflow-x: hidden;
         }
 
-        @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
-        @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
-        @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
-        @media (max-width: 640px) {
-            html { font-size: 4.444444vw; }
-            :root { --gutter: 16px; }
+        /* Mobile-first responsive font scaling */
+        html { font-size: 4.444444vw; } /* mobile default */
+        :root { --gutter: 16px; }
+        @media (min-width: 640px) {
+            html { font-size: 1.5625vw; }
+            :root { --gutter: 2.5rem; }
         }
+        @media (min-width: 1024px) { html { font-size: 1.111111vw; } }
+        @media (min-width: 1440px) { html { font-size: 0.833333vw; } }
 
         ::selection {
             background: var(--accent);
@@ -526,6 +528,9 @@
             grid-template-columns: 1fr;
             gap: 3rem;
         }
+        @media (max-width: 1023px) {
+            .story-right { padding-top: 1rem; }
+        }
         @media (min-width: 1024px) {
             .story-grid {
                 grid-template-columns: repeat(12, 1fr);
@@ -827,7 +832,10 @@
                 grid-template-columns: 1fr auto;
             }
             .voices-quote-block { order: 1; }
-            .voices-portrait-wrap { order: 2; width: 16rem; }
+            .voices-portrait-wrap { order: 2; width: 12rem; }
+        }
+        @media (min-width: 1024px) {
+            .voices-portrait-wrap { width: 16rem; }
         }
         .voices-quote-block blockquote p {
             max-width: 30ch;
@@ -863,15 +871,22 @@
         }
         .contact-heading {
             margin-top: 1.5rem;
-            max-width: 18ch;
+            max-width: 100%;
             font-family: var(--font-display);
             text-transform: uppercase;
             line-height: 0.95;
             letter-spacing: -0.01em;
-            font-size: 5rem;
+            font-size: 3rem;
+            white-space: nowrap;
+        }
+        @media (min-width: 480px) {
+            .contact-heading { font-size: 4rem; }
         }
         @media (min-width: 640px) {
-            .contact-heading { font-size: 13rem; }
+            .contact-heading { font-size: 5.5vw; }
+        }
+        @media (min-width: 1440px) {
+            .contact-heading { font-size: 6vw; }
         }
         .contact-lead {
             margin-top: 2rem;
@@ -1038,8 +1053,7 @@
                     </h2>
                 </div>
                 <p class="hero-desc fade-slide-up" data-delay="2900">
-                    <b>"เปลี่ยนข้ออ้างให้เป็นพลัง เปลี่ยนไขมันให้เป็นกล้ามเนื้อ ด้วยอุปกรณ์ระดับพรีเมี่ยมและโค้ชผู้เชี่ยวชาญ 
-                        <br>เริ่มต้นทลายขีดจำกัดของคุณได้แล้ววันนี้"</b>
+                    <b>"เปลี่ยนข้ออ้างให้เป็นพลัง เปลี่ยนไขมันให้เป็นกล้ามเนื้อ ด้วยอุปกรณ์ระดับพรีเมี่ยมและโค้ชผู้เชี่ยวชาญ เริ่มต้นทลายขีดจำกัดของคุณได้แล้ววันนี้"</b>
                 </p>
             </div>
 
@@ -1192,20 +1206,20 @@
 
             <dl class="impact-dl">
                 <div class="impact-cell fade-slide-up" style="transition-delay: 0ms;">
-                    <dd class="impact-figure">12+</dd>
                     <dt class="impact-label">ปีแห่งความเชี่ยวชาญ<br>ในวงการฟิตเนส</dt>
+                    <dd class="impact-figure">12+</dd>
                 </div>
                 <div class="impact-cell fade-slide-up" style="transition-delay: 110ms;">
-                    <dd class="impact-figure">1200+</dd>
                     <dt class="impact-label">สมาชิกที่ไว้ใจ<br>และร่วมลุยไปด้วยกัน</dt>
+                    <dd class="impact-figure">1200+</dd>
                 </div>
                 <div class="impact-cell fade-slide-up" style="transition-delay: 220ms;">
-                    <dd class="impact-figure">98%</dd>
                     <dt class="impact-label">อัตราความสำเร็จใน<br>การเปลี่ยนรูปร่าง</dt>
+                    <dd class="impact-figure">98%</dd>
                 </div>
                 <div class="impact-cell fade-slide-up" style="transition-delay: 330ms;">
-                    <dd class="impact-figure">6</dd>
                     <dt class="impact-label">เทรนเนอร์มืออาชีพ<br>พร้อมดูแลใกล้ชิด</dt>
+                    <dd class="impact-figure">6</dd>
                 </div>
             </dl>
         </section>
@@ -1266,12 +1280,7 @@
                                 <footer id="activeQuoteFooter">Sagar G. — Customer</footer>
                             </blockquote>
                         </div>
-                        <div class="voices-portrait-wrap">
-                            <div class="liquid-media-container liquid-interactive" data-scale="22" style="aspect-ratio: 4/5;">
-                                <div class="liquid-placeholder" id="voicePlaceholder">Elena Cardoso</div>
-                                <img id="activeVoiceImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%2317171b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23807f78' font-family='sans-serif' font-size='18'%3EElena Cardoso%3C/text%3E%3C/svg%3E" alt="Elena Cardoso" />>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1375,57 +1384,13 @@
         applyAdaptiveGrid();
         window.addEventListener("resize", applyAdaptiveGrid);
 
-        // Preloader Logic
-        const preloader = document.getElementById('preloader');
-        const counterVal = document.getElementById('counterVal');
-        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Lock scroll initially
-        lenis.stop();
-        window.scrollTo(0, 0);
-
-        if (isReducedMotion) {
-            preloader.style.display = 'none';
-            lenis.start();
-            triggerHeroReveals();
-        } else {
-            let startTime = null;
-            const countDuration = 2000;
-
-            function updateCounter(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const progress = timestamp - startTime;
-                const percentage = Math.min(Math.floor((progress / countDuration) * 100), 100);
-                counterVal.textContent = percentage;
-
-                if (progress < countDuration) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counterVal.textContent = "100";
-                    preloader.querySelector('.preloader-brand').style.opacity = '0';
-                    preloader.querySelector('.preloader-counter').style.opacity = '0';
-
-                    setTimeout(() => {
-                        preloader.style.transform = 'translateY(-100%)';
-                        setTimeout(() => {
-                            preloader.style.display = 'none';
-                            lenis.start();
-                            triggerHeroReveals();
-                        }, 650);
-                    }, 300);
-                }
-            }
-            requestAnimationFrame(updateCounter);
-        }
-
-        // Split text helper for Hero Name letters
+        // Split text helper for Hero Name letters — must run before preloader
         function prepareTextReveals() {
             document.querySelectorAll('.hero-name-line').forEach(el => {
                 const text = el.textContent;
                 el.textContent = '';
                 const delayBase = parseInt(el.getAttribute('data-delay') || '0');
                 const staggerBase = parseInt(el.getAttribute('data-stagger') || '40');
-
                 text.split('').forEach((char, i) => {
                     const span = document.createElement('span');
                     span.className = 'reveal-letter';
@@ -1451,6 +1416,51 @@
                     }
                 }, delay - 2500);
             });
+        }
+
+        // Preloader Logic
+        const preloader = document.getElementById('preloader');
+        const counterVal = document.getElementById('counterVal');
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Lock scroll initially
+        lenis.stop();
+        window.scrollTo(0, 0);
+
+        if (isReducedMotion) {
+            preloader.style.display = 'none';
+            preloader.setAttribute('aria-hidden', 'true');
+            lenis.start();
+            triggerHeroReveals();
+        } else {
+            let startTime = null;
+            const countDuration = 2000;
+
+            function updateCounter(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const percentage = Math.min(Math.floor((progress / countDuration) * 100), 100);
+                counterVal.textContent = percentage;
+
+                if (progress < countDuration) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counterVal.textContent = "100";
+                    preloader.querySelector('.preloader-brand').style.opacity = '0';
+                    preloader.querySelector('.preloader-counter').style.opacity = '0';
+
+                    setTimeout(() => {
+                        preloader.style.transform = 'translateY(-100%)';
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                            preloader.setAttribute('aria-hidden', 'true');
+                            lenis.start();
+                            triggerHeroReveals();
+                        }, 650);
+                    }, 300);
+                }
+            }
+            requestAnimationFrame(updateCounter);
         }
 
         // Intersection Observer for scroll-triggered reveals
@@ -1564,8 +1574,6 @@
         const voiceBtns = document.querySelectorAll('.voice-btn');
         const activeQuoteText = document.getElementById('activeQuoteText');
         const activeQuoteFooter = document.getElementById('activeQuoteFooter');
-        const activeVoiceImg = document.getElementById('activeVoiceImg');
-        const voicePlaceholder = document.getElementById('voicePlaceholder');
 
         function renderQuoteWithWordReveal(quoteStr, name, role) {
             activeQuoteText.innerHTML = '';
@@ -1590,8 +1598,6 @@
             activeQuoteText.appendChild(closeQ);
 
             activeQuoteFooter.textContent = `${name} — ${role}`;
-            voicePlaceholder.textContent = name;
-            activeVoiceImg.src = `data:image/svg+xml;utf8,${encodeURIComponent(voicesData[Array.from(voiceBtns).findIndex(b => b.classList.contains('active'))].imgSvg)}`;
 
             requestAnimationFrame(() => {
                 activeQuoteText.querySelectorAll('.word-reveal').forEach(w => w.classList.add('revealed'));
